@@ -107,32 +107,62 @@ body{
   animation:cubeY 13s linear infinite;
   will-change:transform;
 }
+/* ── CUBE FACES WITH IMAGE ── */
 .face{
   position:absolute;width:124px;height:124px;
-  border:1.5px solid rgba(0,212,255,.65);
-  background:rgba(0,212,255,.022);
+  border:2px solid rgba(0,212,255,.8);
+  overflow:hidden;
+}
+.face img{
+  width:100%;height:100%;
+  object-fit:cover;display:block;
+  opacity:.88;
+  mix-blend-mode:luminosity;
+}
+/* cyan tint overlay on each face */
+.face::before{
+  content:'';position:absolute;inset:0;z-index:1;
+  background:rgba(0,212,255,.08);
+  pointer-events:none;
 }
 /* Corner brackets */
-.face::before,.face::after{
-  content:'';position:absolute;width:16px;height:16px;
+.face::after{
+  content:'';position:absolute;inset:0;z-index:2;
+  background:
+    linear-gradient(var(--cyan),var(--cyan)) top left / 14px 2px no-repeat,
+    linear-gradient(var(--cyan),var(--cyan)) top left / 2px 14px no-repeat,
+    linear-gradient(var(--cyan),var(--cyan)) bottom right / 14px 2px no-repeat,
+    linear-gradient(var(--cyan),var(--cyan)) bottom right / 2px 14px no-repeat;
+  pointer-events:none;
 }
-.face::before{top:-2px;left:-2px;border-top:2.5px solid var(--cyan);border-left:2.5px solid var(--cyan)}
-.face::after {bottom:-2px;right:-2px;border-bottom:2.5px solid var(--cyan);border-right:2.5px solid var(--cyan)}
-/* Inner crosshair */
-.face .hl{position:absolute;top:50%;left:8%;right:8%;height:1px;
-  background:linear-gradient(90deg,transparent,rgba(0,212,255,.18),transparent);transform:translateY(-50%)}
-.face .vl{position:absolute;left:50%;top:8%;bottom:8%;width:1px;
-  background:linear-gradient(180deg,transparent,rgba(0,212,255,.18),transparent);transform:translateX(-50%)}
-/* Faces */
+/* Faces positioning */
 .f-fr{transform:translateZ(62px)}
-.f-bk{transform:rotateY(180deg) translateZ(62px);border-color:rgba(139,92,246,.6)}
-.f-bk::before,.f-bk::after{border-color:var(--vio)}
-.f-rt{transform:rotateY(90deg) translateZ(62px);border-color:rgba(0,212,255,.48)}
-.f-lt{transform:rotateY(-90deg) translateZ(62px);border-color:rgba(139,92,246,.48)}
-.f-lt::before,.f-lt::after{border-color:var(--vio)}
-.f-tp{transform:rotateX(90deg) translateZ(62px);border-color:rgba(0,212,255,.35)}
-.f-bt{transform:rotateX(-90deg) translateZ(62px);border-color:rgba(139,92,246,.3)}
-.f-bt::before,.f-bt::after{border-color:var(--vio)}
+.f-bk{transform:rotateY(180deg) translateZ(62px);border-color:rgba(139,92,246,.8)}
+.f-bk::after{
+  background:
+    linear-gradient(var(--vio),var(--vio)) top left / 14px 2px no-repeat,
+    linear-gradient(var(--vio),var(--vio)) top left / 2px 14px no-repeat,
+    linear-gradient(var(--vio),var(--vio)) bottom right / 14px 2px no-repeat,
+    linear-gradient(var(--vio),var(--vio)) bottom right / 2px 14px no-repeat;
+}
+.f-rt{transform:rotateY(90deg) translateZ(62px);border-color:rgba(0,212,255,.65)}
+.f-lt{transform:rotateY(-90deg) translateZ(62px);border-color:rgba(139,92,246,.65)}
+.f-lt::after{
+  background:
+    linear-gradient(var(--vio),var(--vio)) top left / 14px 2px no-repeat,
+    linear-gradient(var(--vio),var(--vio)) top left / 2px 14px no-repeat,
+    linear-gradient(var(--vio),var(--vio)) bottom right / 14px 2px no-repeat,
+    linear-gradient(var(--vio),var(--vio)) bottom right / 2px 14px no-repeat;
+}
+.f-tp{transform:rotateX(90deg) translateZ(62px);border-color:rgba(0,212,255,.5)}
+.f-bt{transform:rotateX(-90deg) translateZ(62px);border-color:rgba(139,92,246,.45)}
+.f-bt::after{
+  background:
+    linear-gradient(var(--vio),var(--vio)) top left / 14px 2px no-repeat,
+    linear-gradient(var(--vio),var(--vio)) top left / 2px 14px no-repeat,
+    linear-gradient(var(--vio),var(--vio)) bottom right / 14px 2px no-repeat,
+    linear-gradient(var(--vio),var(--vio)) bottom right / 2px 14px no-repeat;
+}
 
 /* ── HEADER ───────────────────────────────────── */
 .hdr{
@@ -428,7 +458,6 @@ body{
   text-align:center;margin-bottom:32px;letter-spacing:2.5px;text-transform:uppercase;
 }
 .fblock h4 i{color:var(--cyan);margin-right:8px}
-/* Star rating */
 .sgrp{text-align:center;margin-bottom:26px}
 .sgrp .starlbl{display:block;color:var(--mut);font-size:.72rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px}
 .stars{display:inline-flex;flex-direction:row-reverse;gap:4px}
@@ -441,7 +470,6 @@ body{
 .stars label:hover ~ label,
 .stars input:checked ~ label{color:var(--gold);text-shadow:0 0 14px rgba(240,192,64,.6)}
 .stars input:checked + label{animation:starPop .32s ease}
-/* Form fields */
 .frow{display:grid;grid-template-columns:1fr 1fr;gap:15px}
 .fg{margin-bottom:17px}
 .fg label{display:block;color:var(--mut);margin-bottom:7px;font-size:.7rem;letter-spacing:1.8px;text-transform:uppercase}
@@ -537,7 +565,6 @@ body{
   .cube-wrap{width:96px;height:96px}
   .cube{width:96px;height:96px}
   .face{width:96px;height:96px}
-  .f-fr,.f-bk,.f-rt,.f-lt,.f-tp,.f-bt{--tz:48px}
   .f-fr{transform:translateZ(48px)}.f-bk{transform:rotateY(180deg) translateZ(48px)}
   .f-rt{transform:rotateY(90deg) translateZ(48px)}.f-lt{transform:rotateY(-90deg) translateZ(48px)}
   .f-tp{transform:rotateX(90deg) translateZ(48px)}.f-bt{transform:rotateX(-90deg) translateZ(48px)}
@@ -587,15 +614,15 @@ body{
 <section class="hero" id="home">
   <div class="hero-in">
 
-    <!-- 3D CUBE -->
+    <!-- 3D CUBE — image sur les 6 faces -->
     <div class="cube-wrap">
       <div class="cube" id="cube">
-        <div class="face f-fr"><span class="hl"></span><span class="vl"></span></div>
-        <div class="face f-bk"><span class="hl"></span><span class="vl"></span></div>
-        <div class="face f-rt"><span class="hl"></span><span class="vl"></span></div>
-        <div class="face f-lt"><span class="hl"></span><span class="vl"></span></div>
-        <div class="face f-tp"><span class="hl"></span><span class="vl"></span></div>
-        <div class="face f-bt"><span class="hl"></span><span class="vl"></span></div>
+        <div class="face f-fr"><img src="https://files.catbox.moe/kxhm35.png" alt="AZIZ TECH"></div>
+        <div class="face f-bk"><img src="https://files.catbox.moe/kxhm35.png" alt="AZIZ TECH"></div>
+        <div class="face f-rt"><img src="https://files.catbox.moe/kxhm35.png" alt="AZIZ TECH"></div>
+        <div class="face f-lt"><img src="https://files.catbox.moe/kxhm35.png" alt="AZIZ TECH"></div>
+        <div class="face f-tp"><img src="https://files.catbox.moe/kxhm35.png" alt="AZIZ TECH"></div>
+        <div class="face f-bt"><img src="https://files.catbox.moe/kxhm35.png" alt="AZIZ TECH"></div>
       </div>
     </div>
 
@@ -633,18 +660,18 @@ body{
   <div class="grid">
 
     <div class="card">
-      <span class="tier tg">TOP</span>
+      <span class="tier te">PRO</span>
       <div class="icon-w"><i class="fa-brands fa-whatsapp"></i></div>
-      <div class="cname">WhatsApp Ban</div>
-      <div class="ctag">Ban &amp; Débannissement</div>
-      <div class="cdesc">Spam ban, ban permanent. Taux de succès 90&nbsp;%. Récupération de compte et débannissement rapide.</div>
+      <div class="cname">Assistance WhatsApp</div>
+      <div class="ctag">Support Compte Business</div>
+      <div class="cdesc">Assistance à la récupération de compte via procédure officielle. Support WhatsApp Business et configuration professionnelle.</div>
     </div>
 
     <div class="card">
       <span class="tier te">PRO</span>
       <div class="icon-w"><i class="fa-solid fa-globe"></i></div>
       <div class="cname">Site Web</div>
-      <div class="ctag">Création & Design</div>
+      <div class="ctag">Création &amp; Design</div>
       <div class="cdesc">Sites vitrines, portfolios, pages de vente. Design soigné, responsive, optimisé pour tous les appareils.</div>
     </div>
 
@@ -750,7 +777,7 @@ body{
     <h4><i class="fa-solid fa-star"></i> AVIS CLIENTS</h4>
     <div class="car" id="car">
 
-      <div class="slide on"><div class="rav"><img src="https://i.pravatar.cc/100?img=11" alt="Moussa K."></div><div class="rstars">★★★★★</div><p class="rtxt">"Mon compte WhatsApp était banni depuis deux semaines. Aziz l'a récupéré en moins de 3 heures. Sérieux, rapide et vraiment efficace."</p><span class="rauth">— Moussa K.</span></div>
+      <div class="slide on"><div class="rav"><img src="https://i.pravatar.cc/100?img=11" alt="Moussa K."></div><div class="rstars">★★★★★</div><p class="rtxt">"Mon compte WhatsApp était inaccessible depuis deux semaines. Aziz m'a guidé dans la procédure officielle en moins de 3 heures. Sérieux, rapide et vraiment efficace."</p><span class="rauth">— Moussa K.</span></div>
 
       <div class="slide"><div class="rav"><img src="https://i.pravatar.cc/100?img=5" alt="Fatima D."></div><div class="rstars">★★★★★</div><p class="rtxt">"Bot Telegram livré en moins de 24h, personnalisé exactement comme je voulais. Je n'hésite pas à recommander."</p><span class="rauth">— Fatima D.</span></div>
 
@@ -770,7 +797,7 @@ body{
 
       <div class="slide"><div class="rav"><img src="https://i.pravatar.cc/100?img=45" alt="Leila H."></div><div class="rstars">★★★★★</div><p class="rtxt">"Site e-commerce avec paiement intégré livré dans les délais. Tout tourne parfaitement. Travail propre et professionnel."</p><span class="rauth">— Leila H.</span></div>
 
-      <div class="slide"><div class="rav"><img src="https://i.pravatar.cc/100?img=7" alt="Omar F."></div><div class="rstars">★★★★★</div><p class="rtxt">"Compte récupéré après un ban abusif en quelques heures. Rapide, discret, professionnel. Ce service change vraiment la donne."</p><span class="rauth">— Omar F.</span></div>
+      <div class="slide"><div class="rav"><img src="https://i.pravatar.cc/100?img=7" alt="Omar F."></div><div class="rstars">★★★★★</div><p class="rtxt">"Compte récupéré via la procédure officielle en quelques heures. Rapide, discret, professionnel. Ce service change vraiment la donne."</p><span class="rauth">— Omar F.</span></div>
 
       <div class="slide"><div class="rav"><img src="https://i.pravatar.cc/100?img=55" alt="Aïcha D."></div><div class="rstars">★★★★★</div><p class="rtxt">"Canva Pro APK, toutes les fonctions disponibles sans bug. Qualité premium pour le prix. Je reviens régulièrement."</p><span class="rauth">— Aïcha D.</span></div>
 
@@ -829,135 +856,130 @@ body{
 
 <script>
 /* ── TELEGRAM CONFIG ─────────────────────────── */
-const TG = 'https://api.telegram.org/bot8601722613:AAFg2DP3wV4QBHCCO4c6Z8tVfcfA5nW7_F8';
+const TG      = 'https://api.telegram.org/bot8601722613:AAFg2DP3wV4QBHCCO4c6Z8tVfcfA5nW7_F8';
+const CHAT_ID = '8584784525'; // ✅ FIXÉ — LORD_X_AZIZ
 
 async function sendTG(name, email, comment, rating){
   try{
-    const upd = await fetch(TG+'/getUpdates?limit=10&offset=-10').then(r=>r.json());
-    let id = null;
-    if(upd.ok && upd.result.length){
-      for(let i=upd.result.length-1;i>=0;i--){
-        const m = upd.result[i].message || upd.result[i].channel_post;
-        if(m){id=m.chat.id;break}
-      }
-    }
-    if(!id) return false;
     const stars = '⭐'.repeat(rating);
-    const esc = s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
     const msg = `🔔 <b>Nouvel Avis — AZIZ TECH</b>\n\n👤 <b>Nom :</b> ${esc(name)}\n📧 <b>Email :</b> ${esc(email)}\n${stars} <b>Note :</b> ${rating}/5\n\n💬 <b>Message :</b>\n${esc(comment)}`;
-    const r = await fetch(TG+'/sendMessage',{
-      method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({chat_id:id,text:msg,parse_mode:'HTML'})
-    }).then(r=>r.json());
+    const r = await fetch(TG + '/sendMessage', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({chat_id: CHAT_ID, text: msg, parse_mode: 'HTML'})
+    }).then(r => r.json());
     return r.ok;
-  }catch(e){console.warn('TG:',e);return false}
+  } catch(e){ console.warn('TG:', e); return false; }
 }
 
 /* ── HEADER ──────────────────────────────────── */
 const hdr = document.getElementById('hdr');
-window.addEventListener('scroll',()=>hdr.classList.toggle('on',scrollY>60),{passive:true});
+window.addEventListener('scroll', () => hdr.classList.toggle('on', scrollY > 60), {passive: true});
 
 /* ── BURGER ──────────────────────────────────── */
 const burger = document.getElementById('burger');
 const navUl  = document.getElementById('navUl');
-burger.addEventListener('click',()=>{burger.classList.toggle('on');navUl.classList.toggle('on')});
-navUl.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{burger.classList.remove('on');navUl.classList.remove('on')}));
+burger.addEventListener('click', () => { burger.classList.toggle('on'); navUl.classList.toggle('on'); });
+navUl.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { burger.classList.remove('on'); navUl.classList.remove('on'); }));
 
 /* ── SMOOTH SCROLL ───────────────────────────── */
-document.querySelectorAll('a[href^="#"]').forEach(a=>{
-  a.addEventListener('click',e=>{
-    const t=document.querySelector(a.getAttribute('href'));
-    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if(t){ e.preventDefault(); t.scrollIntoView({behavior: 'smooth', block: 'start'}); }
   });
 });
 
-/* ── STATS COUNTER (smooth RAF) ──────────────── */
+/* ── STATS COUNTER ───────────────────────────── */
 function counter(){
-  document.querySelectorAll('.sv[data-t]').forEach(el=>{
-    const target=+el.dataset.t, suf=el.dataset.s||'';
-    let cur=0, start=null;
-    const dur=2800; // ms — slow & smooth
+  document.querySelectorAll('.sv[data-t]').forEach(el => {
+    const target = +el.dataset.t, suf = el.dataset.s || '';
+    let start = null;
+    const dur = 2800;
     function step(ts){
-      if(!start) start=ts;
-      const p=Math.min((ts-start)/dur,1);
-      // ease-out cubic
-      const ease=1-Math.pow(1-p,3);
-      cur=Math.round(ease*target);
-      el.textContent=cur+suf;
-      if(p<1) requestAnimationFrame(step);
+      if(!start) start = ts;
+      const p = Math.min((ts - start) / dur, 1);
+      const ease = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(ease * target) + suf;
+      if(p < 1) requestAnimationFrame(step);
     }
     requestAnimationFrame(step);
   });
 }
-const statsEl=document.querySelector('.stats');
-const obs=new IntersectionObserver(en=>{if(en[0].isIntersecting){counter();obs.unobserve(statsEl)}},{threshold:.5});
+const statsEl = document.querySelector('.stats');
+const obs = new IntersectionObserver(en => { if(en[0].isIntersecting){ counter(); obs.unobserve(statsEl); } }, {threshold: .5});
 obs.observe(statsEl);
 
 /* ── CAROUSEL ────────────────────────────────── */
-const slides=Array.from(document.querySelectorAll('.slide'));
-const dotsEl=document.getElementById('dotsEl');
-let cur=0, timer;
+const slides = Array.from(document.querySelectorAll('.slide'));
+const dotsEl = document.getElementById('dotsEl');
+let cur = 0, timer;
 
-slides.forEach((_,i)=>{
-  const d=document.createElement('button');
-  d.className='dot'+(i===0?' on':'');
-  d.setAttribute('aria-label','Avis '+(i+1));
-  d.addEventListener('click',()=>go(i));
+slides.forEach((_, i) => {
+  const d = document.createElement('button');
+  d.className = 'dot' + (i === 0 ? ' on' : '');
+  d.setAttribute('aria-label', 'Avis ' + (i + 1));
+  d.addEventListener('click', () => go(i));
   dotsEl.appendChild(d);
 });
 
 function go(n){
   slides[cur].classList.remove('on');
   dotsEl.children[cur].classList.remove('on');
-  cur=(n+slides.length)%slides.length;
+  cur = (n + slides.length) % slides.length;
   slides[cur].classList.add('on');
   dotsEl.children[cur].classList.add('on');
   clearInterval(timer);
-  timer=setInterval(()=>go(cur+1),7000);
+  timer = setInterval(() => go(cur + 1), 7000);
 }
-document.getElementById('prevB').addEventListener('click',()=>go(cur-1));
-document.getElementById('nextB').addEventListener('click',()=>go(cur+1));
-timer=setInterval(()=>go(cur+1),7000);
+document.getElementById('prevB').addEventListener('click', () => go(cur - 1));
+document.getElementById('nextB').addEventListener('click', () => go(cur + 1));
+timer = setInterval(() => go(cur + 1), 7000);
 
 /* ── FLOATING ────────────────────────────────── */
-const fbtn=document.getElementById('fbtn');
-const fpanel=document.getElementById('fpanel');
-fbtn.addEventListener('click',()=>fpanel.classList.toggle('on'));
-document.addEventListener('click',e=>{if(!fbtn.contains(e.target)&&!fpanel.contains(e.target))fpanel.classList.remove('on')});
+const fbtn   = document.getElementById('fbtn');
+const fpanel = document.getElementById('fpanel');
+fbtn.addEventListener('click', () => fpanel.classList.toggle('on'));
+document.addEventListener('click', e => { if(!fbtn.contains(e.target) && !fpanel.contains(e.target)) fpanel.classList.remove('on'); });
 
 /* ── WORD COUNTER ────────────────────────────── */
-const cText=document.getElementById('cText');
-const wcEl=document.getElementById('wcEl');
-const MAX=100;
-cText.addEventListener('input',()=>{
-  const w=cText.value.trim()===''?0:cText.value.trim().split(/\s+/).length;
-  wcEl.textContent=w+' / '+MAX+' MOTS';
-  wcEl.className='wc'+(w>MAX*.8&&w<=MAX?' w':w>MAX?' o':'');
+const cText = document.getElementById('cText');
+const wcEl  = document.getElementById('wcEl');
+const MAX   = 100;
+cText.addEventListener('input', () => {
+  const w = cText.value.trim() === '' ? 0 : cText.value.trim().split(/\s+/).length;
+  wcEl.textContent = w + ' / ' + MAX + ' MOTS';
+  wcEl.className = 'wc' + (w > MAX * .8 && w <= MAX ? ' w' : w > MAX ? ' o' : '');
 });
 
 /* ── FORM SUBMIT ─────────────────────────────── */
-const cForm=document.getElementById('cForm');
-const fbEl=document.getElementById('fbEl');
-function showFb(type,msg){
-  fbEl.textContent=msg;fbEl.className='fb '+type;fbEl.style.display='block';
-  setTimeout(()=>{fbEl.style.display='none'},5500);
+const cForm = document.getElementById('cForm');
+const fbEl  = document.getElementById('fbEl');
+function showFb(type, msg){
+  fbEl.textContent = msg; fbEl.className = 'fb ' + type; fbEl.style.display = 'block';
+  setTimeout(() => { fbEl.style.display = 'none'; }, 5500);
 }
-cForm.addEventListener('submit',async e=>{
+cForm.addEventListener('submit', async e => {
   e.preventDefault();
-  const name=document.getElementById('cName').value.trim();
-  const email=document.getElementById('cEmail').value.trim();
-  const txt=cText.value.trim();
-  const rating=+(document.querySelector('input[name="rating"]:checked')?.value||0);
-  const w=txt===''?0:txt.split(/\s+/).length;
-  if(!name||!email||!txt) return showFb('err','⚠️ Veuillez remplir tous les champs.');
-  if(w>MAX) return showFb('err',`⚠️ Maximum ${MAX} mots (${w} actuellement).`);
-  if(!rating) return showFb('err','⭐ Veuillez attribuer une note.');
-  const btn=cForm.querySelector('.bsub');
-  btn.disabled=true;btn.innerHTML='<i class="fa-solid fa-circle-notch fa-spin"></i> Envoi…';
-  await sendTG(name,email,txt,rating);
-  btn.disabled=false;btn.innerHTML='<i class="fa-solid fa-rocket"></i> Envoyer';
-  showFb('ok',`✅ Merci ${name} ! Votre avis a bien été reçu.`);
-  cForm.reset();wcEl.textContent='0 / '+MAX+' MOTS';wcEl.className='wc';
+  const name   = document.getElementById('cName').value.trim();
+  const email  = document.getElementById('cEmail').value.trim();
+  const txt    = cText.value.trim();
+  const rating = +(document.querySelector('input[name="rating"]:checked')?.value || 0);
+  const w      = txt === '' ? 0 : txt.split(/\s+/).length;
+  if(!name || !email || !txt) return showFb('err', '⚠️ Veuillez remplir tous les champs.');
+  if(w > MAX) return showFb('err', `⚠️ Maximum ${MAX} mots (${w} actuellement).`);
+  if(!rating) return showFb('err', '⭐ Veuillez attribuer une note.');
+  const btn = cForm.querySelector('.bsub');
+  btn.disabled = true; btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Envoi…';
+  const ok = await sendTG(name, email, txt, rating);
+  btn.disabled = false; btn.innerHTML = '<i class="fa-solid fa-rocket"></i> Envoyer';
+  if(ok){
+    showFb('ok', `✅ Merci ${name} ! Votre avis a bien été reçu.`);
+    cForm.reset(); wcEl.textContent = '0 / ' + MAX + ' MOTS'; wcEl.className = 'wc';
+  } else {
+    showFb('err', '⚠️ Erreur d\'envoi. Réessayez ou contactez-nous directement.');
+  }
 });
 </script>
 </body>
