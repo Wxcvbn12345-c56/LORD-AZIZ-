@@ -8,216 +8,84 @@
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Exo+2:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
-/* ── TOKENS ───────────────────────────────────── */
 :root{
-  --deep:#020209; --surf:#05050f; --card:#08081a; --card2:#0b0b1e;
-  --cyan:#00d4ff; --vio:#8b5cf6; --red:#ef4444; --gold:#f0c040;
-  --txt:#dde4ef; --mut:#7a8a9e; --brd:#111126;
-  --ease:.38s cubic-bezier(.4,0,.2,1);
-  --r:16px; --rs:10px;
+  --deep:#020209;--card:#08081a;--cyan:#00d4ff;--vio:#8b5cf6;
+  --red:#ef4444;--gold:#f0c040;--txt:#dde4ef;--mut:#7a8a9e;--brd:#111126;
+  --ease:.38s cubic-bezier(.4,0,.2,1);--r:16px;--rs:10px;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{
-  background:var(--deep);color:var(--txt);
-  font-family:'Exo 2',system-ui,sans-serif;
-  line-height:1.6;overflow-x:hidden;
-  -webkit-font-smoothing:antialiased;
-}
-.orb-font{font-family:'Orbitron',monospace}
+body{background:var(--deep);color:var(--txt);font-family:'Exo 2',sans-serif;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 ::-webkit-scrollbar{width:5px}
 ::-webkit-scrollbar-track{background:var(--deep)}
 ::-webkit-scrollbar-thumb{background:rgba(0,212,255,.2);border-radius:3px}
-::-webkit-scrollbar-thumb:hover{background:var(--cyan)}
 
-/* ── BACKGROUND ─────────────────────────────── */
+/* BG */
 .bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
 .orb{position:absolute;border-radius:50%;filter:blur(120px)}
-.o1{width:700px;height:700px;top:-200px;left:-150px;
-    background:radial-gradient(circle,rgba(0,212,255,.052) 0%,transparent 65%);
-    animation:drift 24s ease-in-out infinite}
-.o2{width:580px;height:580px;bottom:0;right:-100px;
-    background:radial-gradient(circle,rgba(139,92,246,.058) 0%,transparent 65%);
-    animation:drift 20s ease-in-out -8s infinite reverse}
-.o3{width:440px;height:440px;top:45%;left:35%;
-    background:radial-gradient(circle,rgba(239,68,68,.032) 0%,transparent 65%);
-    animation:drift 28s ease-in-out -16s infinite}
-@keyframes drift{
-  0%,100%{transform:translate(0,0) scale(1)}
-  30%{transform:translate(38px,-32px) scale(1.04)}
-  65%{transform:translate(-22px,30px) scale(.97)}
-}
-.grid-bg{
-  position:absolute;inset:0;
-  background-image:
-    linear-gradient(rgba(0,212,255,.018) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(0,212,255,.018) 1px,transparent 1px);
-  background-size:64px 64px;
-  mask:radial-gradient(ellipse 88% 88% at 50% 50%,#000 20%,transparent 100%);
-  -webkit-mask:radial-gradient(ellipse 88% 88% at 50% 50%,#000 20%,transparent 100%);
-  animation:gpulse 6s ease-in-out infinite;
-}
+.o1{width:700px;height:700px;top:-200px;left:-150px;background:radial-gradient(circle,rgba(0,212,255,.052),transparent 65%);animation:drift 24s ease-in-out infinite}
+.o2{width:580px;height:580px;bottom:0;right:-100px;background:radial-gradient(circle,rgba(139,92,246,.058),transparent 65%);animation:drift 20s ease-in-out -8s infinite reverse}
+.o3{width:440px;height:440px;top:45%;left:35%;background:radial-gradient(circle,rgba(239,68,68,.032),transparent 65%);animation:drift 28s ease-in-out -16s infinite}
+@keyframes drift{0%,100%{transform:translate(0,0) scale(1)}30%{transform:translate(38px,-32px) scale(1.04)}65%{transform:translate(-22px,30px) scale(.97)}}
+.grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(0,212,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,.018) 1px,transparent 1px);background-size:64px 64px;mask:radial-gradient(ellipse 88% 88% at 50% 50%,#000 20%,transparent 100%);-webkit-mask:radial-gradient(ellipse 88% 88% at 50% 50%,#000 20%,transparent 100%);animation:gpulse 6s ease-in-out infinite}
 @keyframes gpulse{0%,100%{opacity:.55}50%{opacity:1.3}}
 
-/* ── KEYFRAMES ───────────────────────────────── */
+/* KEYFRAMES */
 @keyframes up{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
 @keyframes dn{from{opacity:0;transform:translateY(-28px)}to{opacity:1;transform:translateY(0)}}
-@keyframes gC{
-  0%,100%{text-shadow:0 0 8px rgba(0,212,255,.3)}
-  50%{text-shadow:0 0 30px rgba(0,212,255,.95),0 0 65px rgba(0,212,255,.4),0 0 100px rgba(139,92,246,.18)}
-}
-@keyframes gV{
-  0%,100%{text-shadow:0 0 8px rgba(139,92,246,.3)}
-  50%{text-shadow:0 0 30px rgba(139,92,246,.95),0 0 65px rgba(139,92,246,.4)}
-}
+@keyframes gC{0%,100%{text-shadow:0 0 8px rgba(0,212,255,.3)}50%{text-shadow:0 0 30px rgba(0,212,255,.95),0 0 65px rgba(0,212,255,.4)}}
+@keyframes gV{0%,100%{text-shadow:0 0 8px rgba(139,92,246,.3)}50%{text-shadow:0 0 30px rgba(139,92,246,.95),0 0 65px rgba(139,92,246,.4)}}
 @keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
 @keyframes spin{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}
-@keyframes bglow{
-  0%,100%{border-color:rgba(0,212,255,.26);box-shadow:0 0 8px rgba(0,212,255,.1)}
-  50%{border-color:rgba(139,92,246,.5);box-shadow:0 0 20px rgba(139,92,246,.25)}
-}
-@keyframes lpulse{
-  0%,100%{filter:drop-shadow(0 0 7px rgba(0,212,255,.4))}
-  50%{filter:drop-shadow(0 0 18px rgba(0,212,255,.75)) drop-shadow(0 0 4px rgba(139,92,246,.3))}
-}
-@keyframes neon{
-  0%,100%{box-shadow:0 0 10px rgba(0,212,255,.22),0 0 28px rgba(0,212,255,.06)}
-  50%{box-shadow:0 0 26px rgba(0,212,255,.58),0 0 55px rgba(0,212,255,.17)}
-}
+@keyframes bglow{0%,100%{border-color:rgba(0,212,255,.26);box-shadow:0 0 8px rgba(0,212,255,.1)}50%{border-color:rgba(139,92,246,.5);box-shadow:0 0 20px rgba(139,92,246,.25)}}
+@keyframes lpulse{0%,100%{filter:drop-shadow(0 0 7px rgba(0,212,255,.4))}50%{filter:drop-shadow(0 0 18px rgba(0,212,255,.75))}}
+@keyframes neon{0%,100%{box-shadow:0 0 10px rgba(0,212,255,.22),0 0 28px rgba(0,212,255,.06)}50%{box-shadow:0 0 26px rgba(0,212,255,.58),0 0 55px rgba(0,212,255,.17)}}
 @keyframes starPop{0%{transform:scale(1)}40%{transform:scale(1.5)}100%{transform:scale(1)}}
+@keyframes cubeY{from{transform:rotateX(22deg) rotateY(0deg)}to{transform:rotateX(22deg) rotateY(360deg)}}
+@keyframes cubeGlow{0%,100%{filter:drop-shadow(0 0 16px rgba(0,212,255,.45))}50%{filter:drop-shadow(0 0 45px rgba(0,212,255,.85)) drop-shadow(0 0 80px rgba(139,92,246,.3))}}
+@keyframes typeDot{0%,80%,100%{transform:scale(.6);opacity:.4}40%{transform:scale(1);opacity:1}}
+@keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes popIn{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:scale(1)}}
 
-/* ── CUBE ─────────────────────────────────────── */
-@keyframes cubeY{
-  from{transform:rotateX(22deg) rotateY(0deg)}
-  to  {transform:rotateX(22deg) rotateY(360deg)}
-}
-@keyframes cubeGlow{
-  0%,100%{filter:drop-shadow(0 0 16px rgba(0,212,255,.35))}
-  50%{filter:drop-shadow(0 0 40px rgba(0,212,255,.7)) drop-shadow(0 0 80px rgba(139,92,246,.25))}
-}
-.cube-wrap{
-  perspective:600px;width:124px;height:124px;
-  margin:0 auto 58px;
-  animation:cubeGlow 3.5s ease-in-out infinite;
-  will-change:filter;
-}
-.cube{
-  width:124px;height:124px;position:relative;
-  transform-style:preserve-3d;
-  animation:cubeY 13s linear infinite;
-  will-change:transform;
-}
-/* ── CUBE FACES WITH IMAGE ── */
-.face{
-  position:absolute;width:124px;height:124px;
-  border:2px solid rgba(0,212,255,.8);
-  overflow:hidden;
-}
-.face img{
-  width:100%;height:100%;
-  object-fit:cover;display:block;
-  opacity:.88;
-  mix-blend-mode:luminosity;
-}
-/* cyan tint overlay on each face */
-.face::before{
-  content:'';position:absolute;inset:0;z-index:1;
-  background:rgba(0,212,255,.08);
-  pointer-events:none;
-}
-/* Corner brackets */
-.face::after{
-  content:'';position:absolute;inset:0;z-index:2;
-  background:
-    linear-gradient(var(--cyan),var(--cyan)) top left / 14px 2px no-repeat,
-    linear-gradient(var(--cyan),var(--cyan)) top left / 2px 14px no-repeat,
-    linear-gradient(var(--cyan),var(--cyan)) bottom right / 14px 2px no-repeat,
-    linear-gradient(var(--cyan),var(--cyan)) bottom right / 2px 14px no-repeat;
-  pointer-events:none;
-}
-/* Faces positioning */
-.f-fr{transform:translateZ(62px)}
-.f-bk{transform:rotateY(180deg) translateZ(62px);border-color:rgba(139,92,246,.8)}
-.f-bk::after{
-  background:
-    linear-gradient(var(--vio),var(--vio)) top left / 14px 2px no-repeat,
-    linear-gradient(var(--vio),var(--vio)) top left / 2px 14px no-repeat,
-    linear-gradient(var(--vio),var(--vio)) bottom right / 14px 2px no-repeat,
-    linear-gradient(var(--vio),var(--vio)) bottom right / 2px 14px no-repeat;
-}
-.f-rt{transform:rotateY(90deg) translateZ(62px);border-color:rgba(0,212,255,.65)}
-.f-lt{transform:rotateY(-90deg) translateZ(62px);border-color:rgba(139,92,246,.65)}
-.f-lt::after{
-  background:
-    linear-gradient(var(--vio),var(--vio)) top left / 14px 2px no-repeat,
-    linear-gradient(var(--vio),var(--vio)) top left / 2px 14px no-repeat,
-    linear-gradient(var(--vio),var(--vio)) bottom right / 14px 2px no-repeat,
-    linear-gradient(var(--vio),var(--vio)) bottom right / 2px 14px no-repeat;
-}
-.f-tp{transform:rotateX(90deg) translateZ(62px);border-color:rgba(0,212,255,.5)}
-.f-bt{transform:rotateX(-90deg) translateZ(62px);border-color:rgba(139,92,246,.45)}
-.f-bt::after{
-  background:
-    linear-gradient(var(--vio),var(--vio)) top left / 14px 2px no-repeat,
-    linear-gradient(var(--vio),var(--vio)) top left / 2px 14px no-repeat,
-    linear-gradient(var(--vio),var(--vio)) bottom right / 14px 2px no-repeat,
-    linear-gradient(var(--vio),var(--vio)) bottom right / 2px 14px no-repeat;
-}
+/* CUBE */
+.cube-wrap{perspective:600px;width:130px;height:130px;margin:0 auto 58px;animation:cubeGlow 3.5s ease-in-out infinite;will-change:filter}
+.cube{width:130px;height:130px;position:relative;transform-style:preserve-3d;animation:cubeY 12s linear infinite;will-change:transform}
+.face{position:absolute;width:130px;height:130px;overflow:hidden;border:2px solid rgba(0,212,255,.7)}
+.face img{width:100%;height:100%;object-fit:cover;display:block}
+/* Glow overlay */
+.face::after{content:'';position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(135deg,rgba(0,212,255,.12),rgba(139,92,246,.08));
+  box-shadow:inset 0 0 20px rgba(0,212,255,.15)}
+/* Corners top-left */
+.face::before{content:'';position:absolute;top:0;left:0;width:18px;height:18px;border-top:3px solid var(--cyan);border-left:3px solid var(--cyan);z-index:3;pointer-events:none}
+/* Faces */
+.f-fr{transform:translateZ(65px)}
+.f-bk{transform:rotateY(180deg) translateZ(65px);border-color:rgba(139,92,246,.7)}
+.f-bk::before{border-color:var(--vio)}
+.f-rt{transform:rotateY(90deg) translateZ(65px);border-color:rgba(0,212,255,.55)}
+.f-lt{transform:rotateY(-90deg) translateZ(65px);border-color:rgba(139,92,246,.55)}
+.f-lt::before{border-color:var(--vio)}
+.f-tp{transform:rotateX(90deg) translateZ(65px);border-color:rgba(0,212,255,.4)}
+.f-bt{transform:rotateX(-90deg) translateZ(65px);border-color:rgba(139,92,246,.4)}
+.f-bt::before{border-color:var(--vio)}
 
-/* ── HEADER ───────────────────────────────────── */
-.hdr{
-  position:fixed;top:0;left:0;width:100%;z-index:1000;
-  background:rgba(2,2,9,.82);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);
-  border-bottom:1px solid rgba(0,212,255,.1);
-  transition:padding var(--ease),background var(--ease),box-shadow var(--ease);
-  padding:7px 0;
-}
-.hdr.on{
-  padding:4px 0;background:rgba(2,2,9,.97);
-  border-bottom-color:rgba(139,92,246,.26);
-  box-shadow:0 4px 48px rgba(0,0,0,.78);
-}
+/* HEADER */
+.hdr{position:fixed;top:0;left:0;width:100%;z-index:1000;background:rgba(2,2,9,.82);backdrop-filter:blur(28px);border-bottom:1px solid rgba(0,212,255,.1);transition:padding var(--ease),background var(--ease),box-shadow var(--ease);padding:7px 0}
+.hdr.on{padding:4px 0;background:rgba(2,2,9,.97);border-bottom-color:rgba(139,92,246,.26);box-shadow:0 4px 48px rgba(0,0,0,.78)}
 .nav{max-width:1350px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between}
 .logo{display:flex;align-items:center;gap:12px;text-decoration:none}
-.logo-ring{
-  width:48px;height:48px;border-radius:50%;position:relative;
-  animation:lpulse 4s ease-in-out infinite;
-}
-.logo-ring img{
-  width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;
-  border:2px solid rgba(0,212,255,.45);
-}
-.logo-ring::after{
-  content:'';position:absolute;inset:-4px;border-radius:50%;
-  background:linear-gradient(45deg,var(--cyan),var(--vio),var(--red),var(--cyan));
-  background-size:300% 300%;animation:spin 3.5s linear infinite;z-index:-1;
-  -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
-  mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
-  -webkit-mask-composite:xor;mask-composite:exclude;padding:4px;
-}
+.logo-ring{width:48px;height:48px;border-radius:50%;position:relative;animation:lpulse 4s ease-in-out infinite}
+.logo-ring img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;border:2px solid rgba(0,212,255,.45)}
+.logo-ring::after{content:'';position:absolute;inset:-4px;border-radius:50%;background:linear-gradient(45deg,var(--cyan),var(--vio),var(--red),var(--cyan));background-size:300% 300%;animation:spin 3.5s linear infinite;z-index:-1;-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;padding:4px}
 .logo-txt{font-family:'Orbitron',monospace;font-size:1.28rem;font-weight:700;letter-spacing:2px;color:#fff}
 .logo-txt span{color:var(--cyan);animation:gC 2.8s ease-in-out infinite}
 .nav-ul{display:flex;gap:26px;list-style:none;align-items:center}
-.nav-ul a{
-  color:var(--mut);text-decoration:none;font-weight:600;
-  font-size:.75rem;letter-spacing:1.8px;text-transform:uppercase;
-  transition:color var(--ease),text-shadow var(--ease);
-  position:relative;padding:6px 0;
-}
-.nav-ul a::after{
-  content:'';position:absolute;bottom:0;left:0;width:0;height:2px;
-  background:linear-gradient(90deg,var(--cyan),var(--vio));
-  transition:width .32s ease;border-radius:1px;
-}
-.nav-ul a:hover{color:#fff;text-shadow:0 0 10px rgba(0,212,255,.4)}
+.nav-ul a{color:var(--mut);text-decoration:none;font-weight:600;font-size:.75rem;letter-spacing:1.8px;text-transform:uppercase;transition:color var(--ease);position:relative;padding:6px 0}
+.nav-ul a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--vio));transition:width .32s ease;border-radius:1px}
+.nav-ul a:hover{color:#fff}
 .nav-ul a:hover::after{width:100%}
-.ncta{
-  background:linear-gradient(135deg,var(--cyan),var(--vio))!important;
-  color:#020209!important;padding:9px 22px!important;border-radius:50px;
-  font-weight:800!important;box-shadow:0 0 18px rgba(0,212,255,.28);
-  transition:box-shadow var(--ease),transform var(--ease)!important;
-}
-.ncta:hover{box-shadow:0 0 48px rgba(0,212,255,.65),0 0 80px rgba(139,92,246,.4)!important;transform:translateY(-2px);text-shadow:none!important}
+.ncta{background:linear-gradient(135deg,var(--cyan),var(--vio))!important;color:#020209!important;padding:9px 22px!important;border-radius:50px;font-weight:800!important;box-shadow:0 0 18px rgba(0,212,255,.28);transition:box-shadow var(--ease),transform var(--ease)!important}
+.ncta:hover{box-shadow:0 0 48px rgba(0,212,255,.65)!important;transform:translateY(-2px);text-shadow:none!important}
 .ncta::after{display:none!important}
 .burger{display:none;background:none;border:none;cursor:pointer;padding:5px;z-index:1001}
 .burger span{display:block;width:26px;height:2px;background:var(--txt);margin:5px 0;transition:var(--ease);border-radius:2px}
@@ -225,59 +93,25 @@ body{
 .burger.on span:nth-child(2){opacity:0}
 .burger.on span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
 
-/* ── LAYOUT ───────────────────────────────────── */
+/* LAYOUT */
 .wrap{padding:96px 30px;max-width:1350px;margin:0 auto;position:relative;z-index:1}
-.hr{width:100%;height:1px;max-width:1350px;margin:0 auto;
-  background:linear-gradient(90deg,transparent,rgba(0,212,255,.16),rgba(139,92,246,.16),transparent)}
+.hr{width:100%;height:1px;max-width:1350px;margin:0 auto;background:linear-gradient(90deg,transparent,rgba(0,212,255,.16),rgba(139,92,246,.16),transparent)}
 
-/* ── HERO ─────────────────────────────────────── */
-.hero{
-  min-height:100vh;display:flex;align-items:center;
-  justify-content:center;text-align:center;
-  padding:125px 30px 80px;position:relative;z-index:1;
-}
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:125px 30px 80px;position:relative;z-index:1}
 .hero-in{animation:up 1s ease both}
-.badge{
-  display:inline-block;background:rgba(0,212,255,.045);
-  border:1px solid rgba(0,212,255,.26);color:var(--cyan);
-  padding:8px 22px;border-radius:50px;
-  font-size:.7rem;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;
-  margin-bottom:26px;animation:bglow 3.2s ease-in-out infinite,dn .9s ease both;
-  font-family:'Exo 2',sans-serif;
-}
-.h1{
-  font-family:'Orbitron',monospace;
-  font-size:clamp(2.6rem,7vw,4.8rem);font-weight:900;
-  letter-spacing:-1px;line-height:1.06;margin-bottom:18px;color:#fff;
-  animation:gC 3.5s ease-in-out infinite;
-}
+.badge{display:inline-block;background:rgba(0,212,255,.045);border:1px solid rgba(0,212,255,.26);color:var(--cyan);padding:8px 22px;border-radius:50px;font-size:.7rem;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;margin-bottom:26px;animation:bglow 3.2s ease-in-out infinite,dn .9s ease both}
+.h1{font-family:'Orbitron',monospace;font-size:clamp(2.6rem,7vw,4.8rem);font-weight:900;letter-spacing:-1px;line-height:1.06;margin-bottom:18px;color:#fff;animation:gC 3.5s ease-in-out infinite}
 .h1 .vio{color:var(--vio);animation:gV 4s ease-in-out infinite}
-.sub{
-  font-size:1rem;color:var(--mut);max-width:550px;
-  margin:0 auto 42px;line-height:1.78;font-weight:400;
-}
+.sub{font-size:1rem;color:var(--mut);max-width:550px;margin:0 auto 42px;line-height:1.78}
 .btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-.btn{
-  padding:13px 30px;border-radius:50px;font-weight:700;font-size:.85rem;
-  letter-spacing:1px;cursor:pointer;transition:transform var(--ease),box-shadow var(--ease);
-  text-decoration:none;display:inline-flex;align-items:center;gap:8px;
-  border:none;text-transform:uppercase;will-change:transform,box-shadow;
-}
+.btn{padding:13px 30px;border-radius:50px;font-weight:700;font-size:.85rem;letter-spacing:1px;cursor:pointer;transition:transform var(--ease),box-shadow var(--ease);text-decoration:none;display:inline-flex;align-items:center;gap:8px;border:none;text-transform:uppercase}
 .bp{background:linear-gradient(135deg,var(--cyan),var(--vio));color:#020209;box-shadow:0 0 22px rgba(0,212,255,.28)}
 .bp:hover{box-shadow:0 0 55px rgba(0,212,255,.65),0 0 90px rgba(139,92,246,.42);transform:translateY(-3px)}
 .bo{background:transparent;color:#fff;border:1.5px solid rgba(0,212,255,.38)}
 .bo:hover{border-color:var(--cyan);box-shadow:0 0 28px rgba(0,212,255,.42);color:var(--cyan)}
-
-/* Stats */
-.stats{
-  display:flex;gap:14px;flex-wrap:wrap;justify-content:center;
-  margin-top:54px;opacity:0;animation:up .9s ease .5s both;
-}
-.si{
-  background:rgba(8,8,26,.85);border:1px solid var(--brd);border-radius:14px;
-  padding:17px 20px;text-align:center;min-width:100px;
-  backdrop-filter:blur(14px);transition:border-color var(--ease),box-shadow var(--ease),transform var(--ease);
-}
+.stats{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:54px;opacity:0;animation:up .9s ease .5s both}
+.si{background:rgba(8,8,26,.85);border:1px solid var(--brd);border-radius:14px;padding:17px 20px;text-align:center;min-width:100px;backdrop-filter:blur(14px);transition:border-color var(--ease),box-shadow var(--ease),transform var(--ease)}
 .si:hover{border-color:rgba(0,212,255,.4);box-shadow:0 0 22px rgba(0,212,255,.14);transform:translateY(-4px)}
 .sv{font-size:1.62rem;font-weight:800;color:#fff;font-family:'Orbitron',monospace}
 .sv.c{color:var(--cyan);text-shadow:0 0 14px rgba(0,212,255,.4)}
@@ -285,90 +119,31 @@ body{
 .sv.r{color:var(--red);text-shadow:0 0 14px rgba(239,68,68,.4)}
 .sl{font-size:.6rem;text-transform:uppercase;letter-spacing:2.5px;color:var(--mut);margin-top:4px}
 
-/* ── SERVICES ─────────────────────────────────── */
-.srv-box{
-  background:rgba(5,5,15,.96);border:1px solid rgba(0,212,255,.065);
-  border-radius:22px;margin:38px auto;padding:80px 38px;
-  position:relative;overflow:hidden;z-index:1;
-  box-shadow:0 0 100px rgba(0,0,0,.6);
-}
-.srv-box::before{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse at 20% 20%,rgba(0,212,255,.014) 0%,transparent 55%),
-             radial-gradient(ellipse at 80% 78%,rgba(139,92,246,.014) 0%,transparent 55%);
-  pointer-events:none;
-}
-.stitle{
-  text-align:center;font-family:'Orbitron',monospace;
-  font-size:clamp(1.6rem,4vw,2.4rem);font-weight:900;
-  letter-spacing:2.5px;margin-bottom:8px;color:#fff;position:relative;z-index:1;
-}
+/* SERVICES */
+.srv-box{background:rgba(5,5,15,.96);border:1px solid rgba(0,212,255,.065);border-radius:22px;margin:38px auto;padding:80px 38px;position:relative;overflow:hidden;z-index:1;box-shadow:0 0 100px rgba(0,0,0,.6)}
+.stitle{text-align:center;font-family:'Orbitron',monospace;font-size:clamp(1.6rem,4vw,2.4rem);font-weight:900;letter-spacing:2.5px;margin-bottom:8px;color:#fff}
 .stitle .ac{color:var(--cyan);text-shadow:0 0 18px rgba(0,212,255,.4)}
-.ssub{text-align:center;color:var(--mut);margin-bottom:52px;font-size:.88rem;
-  position:relative;z-index:1;letter-spacing:.5px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(252px,1fr));gap:22px;position:relative;z-index:1}
-.card{
-  background:var(--card);border:1px solid var(--brd);border-radius:var(--r);
-  padding:38px 24px 32px;text-align:center;
-  transition:transform var(--ease),border-color var(--ease),box-shadow var(--ease);
-  position:relative;overflow:hidden;
-  opacity:0;animation:up .8s ease both;
-  display:flex;flex-direction:column;align-items:center;
-  will-change:transform;
-}
-.card:nth-child(1){animation-delay:.06s}.card:nth-child(2){animation-delay:.13s}
-.card:nth-child(3){animation-delay:.2s}.card:nth-child(4){animation-delay:.27s}
-.card:nth-child(5){animation-delay:.34s}.card:nth-child(6){animation-delay:.41s}
-.card:nth-child(7){animation-delay:.48s}.card:nth-child(8){animation-delay:.55s}
-.card::before{
-  content:'';position:absolute;top:0;left:0;width:100%;height:3px;
-  background:linear-gradient(90deg,var(--cyan),var(--vio),var(--red));
-  transform:scaleX(0);transform-origin:left;
-  transition:transform .55s ease;
-}
-.card::after{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(circle at 50% 0%,rgba(0,212,255,.032) 0%,transparent 58%);
-  opacity:0;transition:opacity .4s ease;pointer-events:none;
-}
+.ssub{text-align:center;color:var(--mut);margin-bottom:52px;font-size:.88rem;letter-spacing:.5px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(252px,1fr));gap:22px}
+.card{background:var(--card);border:1px solid var(--brd);border-radius:var(--r);padding:38px 24px 32px;text-align:center;transition:transform var(--ease),border-color var(--ease),box-shadow var(--ease);position:relative;overflow:hidden;opacity:0;animation:up .8s ease both;display:flex;flex-direction:column;align-items:center}
+.card:nth-child(1){animation-delay:.06s}.card:nth-child(2){animation-delay:.13s}.card:nth-child(3){animation-delay:.2s}.card:nth-child(4){animation-delay:.27s}.card:nth-child(5){animation-delay:.34s}.card:nth-child(6){animation-delay:.41s}.card:nth-child(7){animation-delay:.48s}.card:nth-child(8){animation-delay:.55s}
+.card::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,var(--cyan),var(--vio),var(--red));transform:scaleX(0);transform-origin:left;transition:transform .55s ease}
 .card:hover::before{transform:scaleX(1)}
-.card:hover::after{opacity:1}
-.card:hover{transform:translateY(-9px);border-color:rgba(0,212,255,.3);
-  box-shadow:0 22px 55px rgba(0,0,0,.52),0 0 28px rgba(0,212,255,.09)}
-.tier{
-  position:absolute;top:13px;right:13px;font-size:.52rem;font-weight:800;
-  text-transform:uppercase;letter-spacing:2px;padding:4px 10px;border-radius:50px;
-  color:#020209;z-index:3;
-}
-.tg{background:linear-gradient(135deg,#ff4757,#ff6b81);box-shadow:0 0 10px rgba(255,71,87,.35)}
-.te{background:linear-gradient(135deg,var(--cyan),#00e5ff);box-shadow:0 0 10px rgba(0,212,255,.35)}
-.tp{background:linear-gradient(135deg,var(--vio),#a78bfa);box-shadow:0 0 10px rgba(139,92,246,.35)}
-.icon-w{
-  width:70px;height:70px;border-radius:18px;
-  background:rgba(0,212,255,.048);border:1px solid rgba(0,212,255,.1);
-  display:flex;align-items:center;justify-content:center;
-  margin:0 auto 20px;transition:background var(--ease),border-color var(--ease);
-  position:relative;z-index:2;
-}
+.card:hover{transform:translateY(-9px);border-color:rgba(0,212,255,.3);box-shadow:0 22px 55px rgba(0,0,0,.52),0 0 28px rgba(0,212,255,.09)}
+.tier{position:absolute;top:13px;right:13px;font-size:.52rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;padding:4px 10px;border-radius:50px;color:#020209;z-index:3}
+.tg{background:linear-gradient(135deg,#ff4757,#ff6b81)}
+.te{background:linear-gradient(135deg,var(--cyan),#00e5ff)}
+.tp{background:linear-gradient(135deg,var(--vio),#a78bfa)}
+.icon-w{width:70px;height:70px;border-radius:18px;background:rgba(0,212,255,.048);border:1px solid rgba(0,212,255,.1);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;transition:background var(--ease),border-color var(--ease);position:relative;z-index:2}
 .card:hover .icon-w{background:rgba(0,212,255,.08);border-color:rgba(0,212,255,.28);animation:floatY 2.2s ease-in-out infinite}
-.icon-w i{font-size:28px;color:var(--cyan);transition:text-shadow var(--ease)}
-.card:hover .icon-w i{text-shadow:0 0 20px currentColor}
+.icon-w i{font-size:28px;color:var(--cyan)}
 .cname{font-family:'Orbitron',monospace;font-weight:700;font-size:.88rem;margin-bottom:5px;color:#fff;letter-spacing:.5px;position:relative;z-index:2}
 .ctag{font-size:.67rem;color:var(--cyan);font-weight:600;letter-spacing:1.8px;margin-bottom:10px;text-transform:uppercase;position:relative;z-index:2}
 .cdesc{font-size:.82rem;color:var(--mut);line-height:1.58;position:relative;z-index:2}
 
-/* ── ABOUT ────────────────────────────────────── */
-.about-blk{
-  display:flex;gap:55px;align-items:center;flex-wrap:wrap;
-  background:rgba(5,5,15,.93);border:1px solid rgba(0,212,255,.08);
-  border-radius:var(--r);padding:52px;backdrop-filter:blur(10px);
-}
-.about-img{
-  flex:0 0 250px;width:250px;height:250px;border-radius:50%;overflow:hidden;
-  border:2.5px solid rgba(0,212,255,.3);
-  animation:neon 3.5s ease-in-out infinite,floatY 7s ease-in-out infinite;
-  will-change:box-shadow,transform;
-}
+/* ABOUT */
+.about-blk{display:flex;gap:55px;align-items:center;flex-wrap:wrap;background:rgba(5,5,15,.93);border:1px solid rgba(0,212,255,.08);border-radius:var(--r);padding:52px;backdrop-filter:blur(10px)}
+.about-img{flex:0 0 250px;width:250px;height:250px;border-radius:50%;overflow:hidden;border:2.5px solid rgba(0,212,255,.3);animation:neon 3.5s ease-in-out infinite,floatY 7s ease-in-out infinite}
 .about-img img{width:100%;height:100%;object-fit:cover;display:block}
 .about-txt{flex:1;min-width:280px}
 .atag{color:var(--vio);font-weight:600;letter-spacing:2px;text-transform:uppercase;font-size:.72rem;margin-bottom:10px;display:block}
@@ -376,182 +151,227 @@ body{
 .about-txt h3 span{color:var(--cyan);animation:gC 2.8s ease-in-out infinite}
 .about-txt p{color:var(--mut);line-height:1.88;font-size:.94rem}
 
-/* ── CONTACT ──────────────────────────────────── */
-.cbox{
-  background:rgba(5,5,15,.93);border:1px solid rgba(0,212,255,.08);
-  border-radius:var(--r);padding:48px;margin-top:50px;backdrop-filter:blur(10px);
-  opacity:0;animation:up .8s ease .1s both;
-}
-.cbox h4{
-  font-family:'Orbitron',monospace;font-size:1.08rem;color:#fff;
-  margin-bottom:32px;text-align:center;letter-spacing:2.5px;text-transform:uppercase;
-}
+/* CONTACT */
+.cbox{background:rgba(5,5,15,.93);border:1px solid rgba(0,212,255,.08);border-radius:var(--r);padding:48px;margin-top:50px;backdrop-filter:blur(10px);opacity:0;animation:up .8s ease .1s both}
+.cbox h4{font-family:'Orbitron',monospace;font-size:1.08rem;color:#fff;margin-bottom:32px;text-align:center;letter-spacing:2.5px;text-transform:uppercase}
 .cbox h4 i{color:var(--cyan);margin-right:9px}
 .clinks{display:flex;gap:15px;flex-wrap:wrap;justify-content:center}
-.cl{
-  display:flex;align-items:center;gap:13px;
-  background:var(--card);border:1px solid var(--brd);
-  padding:17px 24px;border-radius:var(--rs);text-decoration:none;
-  color:var(--txt);transition:transform var(--ease),border-color var(--ease),box-shadow var(--ease);
-  min-width:212px;justify-content:center;
-}
+.cl{display:flex;align-items:center;gap:13px;background:var(--card);border:1px solid var(--brd);padding:17px 24px;border-radius:var(--rs);text-decoration:none;color:var(--txt);transition:transform var(--ease),border-color var(--ease),box-shadow var(--ease);min-width:212px;justify-content:center}
 .cl:hover{border-color:var(--cyan);box-shadow:0 0 28px rgba(0,212,255,.17);transform:translateY(-4px)}
-.cl i{font-size:21px;color:var(--cyan);transition:text-shadow var(--ease)}
-.cl:hover i{text-shadow:0 0 16px rgba(0,212,255,.6)}
+.cl i{font-size:21px;color:var(--cyan)}
 .cll{font-size:.6rem;color:var(--mut);text-transform:uppercase;letter-spacing:2px;display:block}
 .clv{font-weight:700;font-size:.86rem;color:#fff;display:block}
 
-/* ── REVIEWS ──────────────────────────────────── */
+/* REVIEWS */
 .rev{margin-top:62px;opacity:0;animation:up .8s ease .18s both}
-.rev h4{
-  font-family:'Orbitron',monospace;text-align:center;color:#fff;
-  font-size:1.08rem;margin-bottom:28px;letter-spacing:2.5px;text-transform:uppercase;
-}
+.rev h4{font-family:'Orbitron',monospace;text-align:center;color:#fff;font-size:1.08rem;margin-bottom:28px;letter-spacing:2.5px;text-transform:uppercase}
 .rev h4 i{color:var(--gold);margin-right:8px}
-.car{
-  background:rgba(5,5,15,.93);border:1px solid rgba(0,212,255,.08);
-  border-radius:var(--r);padding:42px 30px 28px;
-  position:relative;min-height:195px;overflow:hidden;backdrop-filter:blur(10px);
-}
-.slide{
-  position:absolute;inset:0;padding:42px 30px;
-  display:flex;flex-direction:column;align-items:center;
-  justify-content:center;text-align:center;
-  opacity:0;transform:translateX(22px);
-  transition:opacity .6s ease,transform .6s ease;
-  pointer-events:none;
-}
+.car{background:rgba(5,5,15,.93);border:1px solid rgba(0,212,255,.08);border-radius:var(--r);padding:42px 30px 28px;position:relative;min-height:195px;overflow:hidden;backdrop-filter:blur(10px)}
+.slide{position:absolute;inset:0;padding:42px 30px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;opacity:0;transform:translateX(22px);transition:opacity .6s ease,transform .6s ease;pointer-events:none}
 .slide.on{opacity:1;transform:translateX(0);position:relative;inset:auto;pointer-events:auto}
-.rav{
-  width:54px;height:54px;border-radius:50%;overflow:hidden;
-  border:2px solid rgba(0,212,255,.4);margin:0 auto 13px;
-  box-shadow:0 0 14px rgba(0,212,255,.15);
-}
+.rav{width:54px;height:54px;border-radius:50%;overflow:hidden;border:2px solid rgba(0,212,255,.4);margin:0 auto 13px}
 .rav img{width:100%;height:100%;object-fit:cover;display:block}
 .rstars{color:var(--gold);margin-bottom:9px;font-size:.88rem;letter-spacing:2px}
 .rtxt{font-style:italic;color:var(--txt);font-size:.92rem;line-height:1.65;margin-bottom:11px;max-width:540px}
 .rauth{color:var(--cyan);font-weight:700;font-size:.78rem;letter-spacing:.8px}
 .dots{display:flex;gap:7px;justify-content:center;margin-top:20px}
-.dot{
-  width:7px;height:7px;border-radius:50%;
-  background:rgba(0,212,255,.16);border:none;cursor:pointer;
-  transition:background var(--ease),width var(--ease),border-radius var(--ease);padding:0;
-}
+.dot{width:7px;height:7px;border-radius:50%;background:rgba(0,212,255,.16);border:none;cursor:pointer;transition:background var(--ease),width var(--ease),border-radius var(--ease);padding:0}
 .dot.on{background:var(--cyan);box-shadow:0 0 8px rgba(0,212,255,.45);width:22px;border-radius:4px}
 .cnav{display:flex;justify-content:center;gap:12px;margin-top:12px}
-.cbtn{
-  background:rgba(0,212,255,.055);border:1px solid rgba(0,212,255,.2);
-  color:var(--cyan);width:37px;height:37px;border-radius:50%;
-  cursor:pointer;transition:background var(--ease),box-shadow var(--ease);
-  display:flex;align-items:center;justify-content:center;font-size:.82rem;
-}
+.cbtn{background:rgba(0,212,255,.055);border:1px solid rgba(0,212,255,.2);color:var(--cyan);width:37px;height:37px;border-radius:50%;cursor:pointer;transition:background var(--ease),box-shadow var(--ease);display:flex;align-items:center;justify-content:center;font-size:.82rem}
 .cbtn:hover{background:rgba(0,212,255,.13);box-shadow:0 0 16px rgba(0,212,255,.26)}
 
-/* ── FORM ─────────────────────────────────────── */
-.fblock{
-  background:rgba(5,5,15,.93);border:1px solid rgba(0,212,255,.08);
-  border-radius:var(--r);padding:46px;margin-top:28px;backdrop-filter:blur(10px);
-  opacity:0;animation:up .8s ease .28s both;
-}
-.fblock h4{
-  font-family:'Orbitron',monospace;color:#fff;font-size:1.08rem;
-  text-align:center;margin-bottom:32px;letter-spacing:2.5px;text-transform:uppercase;
-}
+/* FORM */
+.fblock{background:rgba(5,5,15,.93);border:1px solid rgba(0,212,255,.08);border-radius:var(--r);padding:46px;margin-top:28px;backdrop-filter:blur(10px);opacity:0;animation:up .8s ease .28s both}
+.fblock h4{font-family:'Orbitron',monospace;color:#fff;font-size:1.08rem;text-align:center;margin-bottom:32px;letter-spacing:2.5px;text-transform:uppercase}
 .fblock h4 i{color:var(--cyan);margin-right:8px}
 .sgrp{text-align:center;margin-bottom:26px}
 .sgrp .starlbl{display:block;color:var(--mut);font-size:.72rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px}
 .stars{display:inline-flex;flex-direction:row-reverse;gap:4px}
 .stars input{display:none}
-.stars label{
-  font-size:31px;color:rgba(255,255,255,.12);cursor:pointer;
-  transition:color .18s ease,text-shadow .18s ease;line-height:1;
-}
-.stars label:hover,
-.stars label:hover ~ label,
-.stars input:checked ~ label{color:var(--gold);text-shadow:0 0 14px rgba(240,192,64,.6)}
-.stars input:checked + label{animation:starPop .32s ease}
+.stars label{font-size:31px;color:rgba(255,255,255,.12);cursor:pointer;transition:color .18s ease;line-height:1}
+.stars label:hover,.stars label:hover~label,.stars input:checked~label{color:var(--gold);text-shadow:0 0 14px rgba(240,192,64,.6)}
 .frow{display:grid;grid-template-columns:1fr 1fr;gap:15px}
 .fg{margin-bottom:17px}
 .fg label{display:block;color:var(--mut);margin-bottom:7px;font-size:.7rem;letter-spacing:1.8px;text-transform:uppercase}
-.fg input,.fg textarea{
-  width:100%;padding:13px 16px;background:rgba(8,8,26,.85);
-  border:1px solid var(--brd);border-radius:var(--rs);color:var(--txt);
-  font-size:.9rem;font-family:'Exo 2',sans-serif;
-  transition:border-color var(--ease),box-shadow var(--ease),background var(--ease);
-  resize:vertical;
-}
-.fg input:focus,.fg textarea:focus{
-  outline:none;border-color:var(--cyan);
-  box-shadow:0 0 18px rgba(0,212,255,.13);background:rgba(0,212,255,.018);
-}
+.fg input,.fg textarea{width:100%;padding:13px 16px;background:rgba(8,8,26,.85);border:1px solid var(--brd);border-radius:var(--rs);color:var(--txt);font-size:.9rem;font-family:'Exo 2',sans-serif;transition:border-color var(--ease),box-shadow var(--ease);resize:vertical}
+.fg input:focus,.fg textarea:focus{outline:none;border-color:var(--cyan);box-shadow:0 0 18px rgba(0,212,255,.13)}
 .fg textarea{min-height:128px}
 .wc{text-align:right;font-size:.66rem;color:var(--mut);margin-top:5px;letter-spacing:1px;text-transform:uppercase}
 .wc.w{color:#f59e0b}.wc.o{color:var(--red);font-weight:700}
-.bsub{
-  width:100%;padding:16px;
-  background:linear-gradient(135deg,var(--cyan),var(--vio));
-  color:#020209;border:none;border-radius:var(--rs);
-  font-weight:800;font-size:.92rem;cursor:pointer;
-  transition:box-shadow var(--ease),transform var(--ease);
-  letter-spacing:1.5px;text-transform:uppercase;
-  box-shadow:0 0 18px rgba(0,212,255,.24);
-  font-family:'Exo 2',sans-serif;will-change:transform,box-shadow;
-}
-.bsub:hover{box-shadow:0 0 50px rgba(0,212,255,.56),0 0 85px rgba(139,92,246,.32);transform:translateY(-2px)}
+.bsub{width:100%;padding:16px;background:linear-gradient(135deg,var(--cyan),var(--vio));color:#020209;border:none;border-radius:var(--rs);font-weight:800;font-size:.92rem;cursor:pointer;transition:box-shadow var(--ease),transform var(--ease);letter-spacing:1.5px;text-transform:uppercase;box-shadow:0 0 18px rgba(0,212,255,.24);font-family:'Exo 2',sans-serif}
+.bsub:hover{box-shadow:0 0 50px rgba(0,212,255,.56);transform:translateY(-2px)}
 .bsub:disabled{opacity:.6;cursor:not-allowed;transform:none}
-.fb{
-  text-align:center;margin-top:18px;font-weight:600;letter-spacing:.5px;
-  display:none;padding:14px;border-radius:var(--rs);font-size:.86rem;
-}
+.fb{text-align:center;margin-top:18px;font-weight:600;display:none;padding:14px;border-radius:var(--rs);font-size:.86rem}
 .fb.ok{background:rgba(0,212,255,.05);border:1px solid rgba(0,212,255,.2);color:var(--cyan)}
 .fb.err{background:rgba(239,68,68,.05);border:1px solid rgba(239,68,68,.2);color:var(--red)}
 
-/* ── FOOTER ───────────────────────────────────── */
-.footer{
-  text-align:center;padding:36px;color:var(--mut);font-size:.8rem;
-  border-top:1px solid rgba(0,212,255,.07);margin-top:70px;
-  letter-spacing:.5px;position:relative;z-index:1;
-}
+/* FOOTER */
+.footer{text-align:center;padding:36px;color:var(--mut);font-size:.8rem;border-top:1px solid rgba(0,212,255,.07);margin-top:70px;position:relative;z-index:1}
 .footer span{color:var(--cyan);font-weight:700;text-shadow:0 0 8px rgba(0,212,255,.28)}
 
-/* ── FLOATING ─────────────────────────────────── */
-.fbtn{
-  position:fixed;bottom:27px;right:27px;width:52px;height:52px;
-  border-radius:50%;background:linear-gradient(135deg,var(--cyan),var(--vio));
-  border:none;cursor:pointer;z-index:999;
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:0 0 20px rgba(0,212,255,.4);
-  transition:transform var(--ease),box-shadow var(--ease);
-  animation:neon 3s ease-in-out infinite;
-}
+/* FLOATING SHARE */
+.fbtn{position:fixed;bottom:27px;right:27px;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--cyan),var(--vio));border:none;cursor:pointer;z-index:999;display:flex;align-items:center;justify-content:center;box-shadow:0 0 20px rgba(0,212,255,.4);transition:transform var(--ease);animation:neon 3s ease-in-out infinite}
 .fbtn:hover{transform:scale(1.1)}
 .fbtn i{font-size:20px;color:#020209}
-.fpanel{
-  position:fixed;bottom:92px;right:27px;
-  background:rgba(8,8,26,.97);border:1px solid rgba(0,212,255,.26);
-  border-radius:var(--r);padding:14px;z-index:998;
-  display:none;flex-direction:column;gap:7px;min-width:215px;
-  box-shadow:0 22px 48px rgba(0,0,0,.7),0 0 25px rgba(0,212,255,.11);
-  backdrop-filter:blur(20px);
-}
+.fpanel{position:fixed;bottom:92px;right:27px;background:rgba(8,8,26,.97);border:1px solid rgba(0,212,255,.26);border-radius:var(--r);padding:14px;z-index:998;display:none;flex-direction:column;gap:7px;min-width:215px;box-shadow:0 22px 48px rgba(0,0,0,.7);backdrop-filter:blur(20px)}
 .fpanel.on{display:flex;animation:up .3s ease}
-.fpanel a{
-  display:flex;align-items:center;gap:10px;color:var(--txt);text-decoration:none;
-  padding:9px 13px;border-radius:var(--rs);
-  transition:background var(--ease),color var(--ease);
-  font-size:.83rem;font-weight:600;letter-spacing:.3px;
-}
+.fpanel a{display:flex;align-items:center;gap:10px;color:var(--txt);text-decoration:none;padding:9px 13px;border-radius:var(--rs);transition:background var(--ease),color var(--ease);font-size:.83rem;font-weight:600}
 .fpanel a:hover{background:rgba(0,212,255,.07);color:#fff}
 .fpanel a i{width:18px;text-align:center;color:var(--cyan)}
 
-/* ── RESPONSIVE ───────────────────────────────── */
+/* ══════════════════════════════════════
+   CHAT ASSISTANT — VRAI STYLE MESSAGERIE
+   ══════════════════════════════════════ */
+/* Bouton flottant assistant */
+.chat-fab{
+  position:fixed;bottom:27px;left:27px;
+  width:56px;height:56px;border-radius:50%;
+  background:linear-gradient(135deg,var(--vio),var(--cyan));
+  border:none;cursor:pointer;z-index:1000;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 0 22px rgba(139,92,246,.55),0 0 45px rgba(0,212,255,.2);
+  transition:transform var(--ease);
+}
+.chat-fab:hover{transform:scale(1.08)}
+.chat-fab i{font-size:23px;color:#fff}
+.chat-notif{
+  position:absolute;top:-3px;right:-3px;
+  width:18px;height:18px;background:var(--red);
+  border-radius:50%;font-size:.58rem;color:#fff;font-weight:800;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--deep);
+  animation:starPop .8s ease-in-out infinite alternate;
+}
+
+/* Fenêtre de chat */
+.chat-win{
+  position:fixed;bottom:98px;left:27px;
+  width:340px;height:520px;
+  background:rgba(4,4,16,.97);
+  border:1px solid rgba(139,92,246,.3);
+  border-radius:20px;z-index:999;
+  display:none;flex-direction:column;
+  box-shadow:0 25px 70px rgba(0,0,0,.85),0 0 40px rgba(139,92,246,.12);
+  backdrop-filter:blur(28px);
+  overflow:hidden;
+}
+.chat-win.open{
+  display:flex;
+  animation:popIn .28s ease both;
+}
+
+/* Header du chat */
+.chat-head{
+  padding:14px 16px;
+  background:linear-gradient(135deg,rgba(139,92,246,.2),rgba(0,212,255,.1));
+  border-bottom:1px solid rgba(139,92,246,.2);
+  display:flex;align-items:center;gap:11px;
+  flex-shrink:0;
+}
+.chat-head-ava{
+  width:40px;height:40px;border-radius:50%;overflow:hidden;
+  border:2px solid rgba(0,212,255,.5);flex-shrink:0;
+  position:relative;
+}
+.chat-head-ava img{width:100%;height:100%;object-fit:cover}
+.chat-online{
+  position:absolute;bottom:1px;right:1px;
+  width:10px;height:10px;background:#22c55e;
+  border-radius:50%;border:2px solid rgba(4,4,16,.97);
+}
+.chat-head-info{flex:1}
+.chat-head-name{font-family:'Orbitron',monospace;font-size:.72rem;font-weight:700;color:#fff;letter-spacing:1px}
+.chat-head-status{font-size:.6rem;color:#4ade80;letter-spacing:.5px;margin-top:1px}
+.chat-head-close{
+  background:none;border:none;color:var(--mut);
+  cursor:pointer;font-size:1rem;padding:5px;
+  border-radius:50%;transition:background var(--ease),color var(--ease);
+  width:30px;height:30px;display:flex;align-items:center;justify-content:center;
+}
+.chat-head-close:hover{background:rgba(255,255,255,.08);color:#fff}
+
+/* Zone messages */
+.chat-body{
+  flex:1;overflow-y:auto;padding:14px 12px;
+  display:flex;flex-direction:column;gap:8px;
+  scrollbar-width:thin;scrollbar-color:rgba(139,92,246,.2) transparent;
+}
+.chat-body::-webkit-scrollbar{width:3px}
+.chat-body::-webkit-scrollbar-thumb{background:rgba(139,92,246,.3);border-radius:2px}
+
+/* Bulles */
+.msg-row{display:flex;align-items:flex-end;gap:7px;animation:slideUp .25s ease}
+.msg-row.bot{flex-direction:row}
+.msg-row.usr{flex-direction:row-reverse}
+.msg-ava{
+  width:30px;height:30px;border-radius:50%;overflow:hidden;
+  flex-shrink:0;border:1.5px solid rgba(0,212,255,.3);
+}
+.msg-ava img{width:100%;height:100%;object-fit:cover}
+.msg-ava.u{
+  background:linear-gradient(135deg,var(--vio),var(--cyan));
+  display:flex;align-items:center;justify-content:center;
+  font-size:.62rem;color:#fff;font-weight:800;
+  border-color:rgba(139,92,246,.4);
+}
+.bubble{
+  max-width:220px;padding:9px 13px;border-radius:16px;
+  font-size:.79rem;line-height:1.55;
+}
+.msg-row.bot .bubble{
+  background:rgba(139,92,246,.1);
+  border:1px solid rgba(139,92,246,.22);
+  color:var(--txt);border-bottom-left-radius:4px;
+}
+.msg-row.usr .bubble{
+  background:linear-gradient(135deg,rgba(0,212,255,.18),rgba(139,92,246,.18));
+  border:1px solid rgba(0,212,255,.28);
+  color:#fff;border-bottom-right-radius:4px;
+}
+.bubble b{color:var(--cyan)}
+.bubble.usr b{color:#fff}
+
+/* Typing dots */
+.typing-row{display:flex;align-items:flex-end;gap:7px}
+.typing-dots{
+  background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.22);
+  border-radius:16px;border-bottom-left-radius:4px;
+  padding:11px 16px;display:flex;gap:4px;align-items:center;
+}
+.typing-dots span{width:6px;height:6px;border-radius:50%;background:var(--vio);display:inline-block;animation:typeDot 1.2s ease-in-out infinite}
+.typing-dots span:nth-child(2){animation-delay:.2s}
+.typing-dots span:nth-child(3){animation-delay:.4s}
+
+/* Zone boutons de choix */
+.chat-choices{
+  padding:10px 12px 14px;
+  border-top:1px solid rgba(139,92,246,.1);
+  background:rgba(2,2,12,.6);
+  display:flex;flex-wrap:wrap;gap:7px;
+  flex-shrink:0;
+  min-height:54px;
+}
+.ch-btn{
+  padding:7px 13px;border-radius:50px;
+  font-size:.71rem;font-weight:700;
+  border:1.5px solid rgba(0,212,255,.3);
+  background:rgba(0,212,255,.05);color:var(--cyan);
+  cursor:pointer;transition:all .22s ease;
+  font-family:'Exo 2',sans-serif;letter-spacing:.3px;
+  animation:popIn .2s ease;
+}
+.ch-btn:hover{background:rgba(0,212,255,.13);border-color:var(--cyan);box-shadow:0 0 12px rgba(0,212,255,.2)}
+.ch-btn.v{border-color:rgba(139,92,246,.4);background:rgba(139,92,246,.07);color:var(--vio)}
+.ch-btn.v:hover{background:rgba(139,92,246,.16);border-color:var(--vio)}
+.ch-btn.g{border-color:rgba(240,192,64,.4);background:rgba(240,192,64,.07);color:var(--gold)}
+.ch-btn.g:hover{background:rgba(240,192,64,.14);border-color:var(--gold)}
+.ch-btn.r{border-color:rgba(239,68,68,.35);background:rgba(239,68,68,.07);color:var(--red)}
+.ch-btn.r:hover{background:rgba(239,68,68,.14);border-color:var(--red)}
+
+/* RESPONSIVE */
 @media(max-width:900px){
-  .nav-ul{
-    position:fixed;top:0;right:-100%;width:260px;height:100vh;
-    background:rgba(2,2,12,.99);backdrop-filter:blur(24px);
-    flex-direction:column;justify-content:center;gap:28px;
-    transition:right var(--ease);border-left:1px solid rgba(0,212,255,.12);z-index:1000;
-  }
+  .nav-ul{position:fixed;top:0;right:-100%;width:260px;height:100vh;background:rgba(2,2,12,.99);backdrop-filter:blur(24px);flex-direction:column;justify-content:center;gap:28px;transition:right var(--ease);border-left:1px solid rgba(0,212,255,.12);z-index:1000}
   .nav-ul.on{right:0}
   .burger{display:block}
   .about-blk{flex-direction:column;text-align:center;padding:36px 24px}
@@ -559,6 +379,7 @@ body{
   .srv-box{padding:50px 20px;margin:20px 10px}
   .wrap{padding:65px 20px}
   .frow{grid-template-columns:1fr}
+  .chat-win{width:calc(100vw - 20px);left:10px;bottom:88px}
 }
 @media(max-width:600px){
   .h1{font-size:2rem}
@@ -580,27 +401,21 @@ body{
 </head>
 <body>
 
-<!-- ─ BACKGROUND ──────────────────────────────── -->
 <div class="bg">
-  <div class="orb o1"></div>
-  <div class="orb o2"></div>
-  <div class="orb o3"></div>
+  <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
   <div class="grid-bg"></div>
 </div>
 
-<!-- ─ HEADER ──────────────────────────────────── -->
+<!-- HEADER -->
 <header class="hdr" id="hdr">
   <div class="nav">
     <a href="#" class="logo">
       <div class="logo-ring">
-        <img src="https://files.catbox.moe/kxhm35.png" alt="AZIZ TECH"
-             onerror="this.style.background='linear-gradient(135deg,#00d4ff,#8b5cf6)';this.alt='AT'">
+        <img src="https://files.catbox.moe/kxhm35.png" alt="AZIZ TECH" onerror="this.style.background='linear-gradient(135deg,#00d4ff,#8b5cf6)'">
       </div>
       <div class="logo-txt">AZIZ <span>TECH</span></div>
     </a>
-    <button class="burger" id="burger" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
+    <button class="burger" id="burger"><span></span><span></span><span></span></button>
     <ul class="nav-ul" id="navUl">
       <li><a href="#home">Accueil</a></li>
       <li><a href="#services">Services</a></li>
@@ -610,41 +425,31 @@ body{
   </div>
 </header>
 
-<!-- ─ HERO ────────────────────────────────────── -->
+<!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-in">
-
-    <!-- 3D CUBE — image sur les 6 faces -->
+    <!-- CUBE 3D — image sur les 6 faces -->
     <div class="cube-wrap">
-      <div class="cube" id="cube">
-        <div class="face f-fr"><img src="https://files.catbox.moe/kxhm35.png" alt="AZIZ TECH"></div>
-        <div class="face f-bk"><img src="https://files.catbox.moe/kxhm35.png" alt="AZIZ TECH"></div>
-        <div class="face f-rt"><img src="https://files.catbox.moe/kxhm35.png" alt="AZIZ TECH"></div>
-        <div class="face f-lt"><img src="https://files.catbox.moe/kxhm35.png" alt="AZIZ TECH"></div>
-        <div class="face f-tp"><img src="https://files.catbox.moe/kxhm35.png" alt="AZIZ TECH"></div>
-        <div class="face f-bt"><img src="https://files.catbox.moe/kxhm35.png" alt="AZIZ TECH"></div>
+      <div class="cube">
+        <div class="face f-fr"><img src="https://files.catbox.moe/kxhm35.png" alt=""></div>
+        <div class="face f-bk"><img src="https://files.catbox.moe/kxhm35.png" alt=""></div>
+        <div class="face f-rt"><img src="https://files.catbox.moe/kxhm35.png" alt=""></div>
+        <div class="face f-lt"><img src="https://files.catbox.moe/kxhm35.png" alt=""></div>
+        <div class="face f-tp"><img src="https://files.catbox.moe/kxhm35.png" alt=""></div>
+        <div class="face f-bt"><img src="https://files.catbox.moe/kxhm35.png" alt=""></div>
       </div>
     </div>
 
     <div class="badge">📡 LORD AZIZ</div>
-
-    <h1 class="h1">
-      BIENVENUE CHEZ<br>
-      <span class="vio">AZIZ TECH</span>
-    </h1>
-
-    <p class="sub">
-      Services tech de qualité — bots Telegram &amp; WhatsApp, cybersécurité, sites web, APK premium et plus encore. Du concret, du vrai, livré avec sérieux.
-    </p>
-
+    <h1 class="h1">BIENVENUE CHEZ<br><span class="vio">AZIZ TECH</span></h1>
+    <p class="sub">Services tech de qualité — bots Telegram &amp; WhatsApp, cybersécurité, sites web, APK premium et plus encore. Du concret, du vrai, livré avec sérieux.</p>
     <div class="btns">
       <a href="#services" class="btn bp"><i class="fa-solid fa-fire"></i> Mes Services</a>
-      <a href="#contact"  class="btn bo"><i class="fa-solid fa-bolt"></i> Contact</a>
+      <a href="#contact" class="btn bo"><i class="fa-solid fa-bolt"></i> Contact</a>
     </div>
-
     <div class="stats">
       <div class="si"><div class="sv c" data-t="500" data-s="+">0</div><div class="sl">Clients</div></div>
-      <div class="si"><div class="sv v" data-t="90"  data-s="%">0</div><div class="sl">Succès</div></div>
+      <div class="si"><div class="sv v" data-t="90" data-s="%">0</div><div class="sl">Succès</div></div>
       <div class="si"><div class="sv r">24/7</div><div class="sl">Dispo</div></div>
       <div class="si"><div class="sv c">TOP</div><div class="sl">Qualité</div></div>
     </div>
@@ -653,154 +458,69 @@ body{
 
 <div class="hr"></div>
 
-<!-- ─ SERVICES ────────────────────────────────── -->
+<!-- SERVICES -->
 <section class="wrap srv-box" id="services">
   <h2 class="stitle">Mes <span class="ac">Services</span></h2>
   <p class="ssub">Des solutions numériques concrètes, livrées avec soin et précision</p>
   <div class="grid">
-
-    <div class="card">
-      <span class="tier te">PRO</span>
-      <div class="icon-w"><i class="fa-brands fa-whatsapp"></i></div>
-      <div class="cname">WhatsApp Ban</div>
-      <div class="ctag">Assistance WhatsApp</div>
-      <div class="cdesc">Aide à la récupération de compte WhatsApp. Accompagnement personnalisé pour retrouver l'accès à votre compte.</div>
-    </div>
-
-    <div class="card">
-      <span class="tier te">PRO</span>
-      <div class="icon-w"><i class="fa-solid fa-globe"></i></div>
-      <div class="cname">Site Web</div>
-      <div class="ctag">Création &amp; Design</div>
-      <div class="cdesc">Sites vitrines, portfolios, pages de vente. Design soigné, responsive, optimisé pour tous les appareils.</div>
-    </div>
-
-    <div class="card">
-      <span class="tier tp">DEV</span>
-      <div class="icon-w"><i class="fa-solid fa-code"></i></div>
-      <div class="cname">Programmation</div>
-      <div class="ctag">Bots WhatsApp &amp; Telegram</div>
-      <div class="cdesc">Bots personnalisés, scripts automatisés, applications sur mesure pour votre activité.</div>
-    </div>
-
-    <div class="card">
-      <span class="tier tg">EXPERT</span>
-      <div class="icon-w"><i class="fa-solid fa-shield-halved"></i></div>
-      <div class="cname">Cybersécurité</div>
-      <div class="ctag">Audit &amp; Protection</div>
-      <div class="cdesc">Audit de sécurité, récupération de compte, protection des données. Service discret et professionnel.</div>
-    </div>
-
-    <div class="card">
-      <span class="tier te">COURS</span>
-      <div class="icon-w"><i class="fa-solid fa-graduation-cap"></i></div>
-      <div class="cname">Formation</div>
-      <div class="ctag">Apprenez l'essentiel</div>
-      <div class="cdesc">Formation en programmation, hacking éthique et outils digitaux. Pour débutants et avancés.</div>
-    </div>
-
-    <div class="card">
-      <span class="tier tp">BUSINESS</span>
-      <div class="icon-w"><i class="fa-solid fa-chart-simple"></i></div>
-      <div class="cname">Gestion Digitale</div>
-      <div class="ctag">Community &amp; Stratégie</div>
-      <div class="cdesc">Community management, stratégie réseaux sociaux, accompagnement de projet digital.</div>
-    </div>
-
-    <div class="card">
-      <span class="tier tg">PREMIUM</span>
-      <div class="icon-w"><i class="fa-brands fa-android"></i></div>
-      <div class="cname">APK Premium</div>
-      <div class="ctag">Applications débloquées</div>
-      <div class="cdesc">CapCut premium, Canva Pro et autres apps modifiées. Fonctionnalités complètes, sans publicité.</div>
-    </div>
-
-    <div class="card">
-      <span class="tier tp">SUR MESURE</span>
-      <div class="icon-w"><i class="fa-solid fa-ellipsis"></i></div>
-      <div class="cname">Et Autres…</div>
-      <div class="ctag">Un besoin spécifique ?</div>
-      <div class="cdesc">Contactez-moi directement. Il existe toujours une solution adaptée à votre situation.</div>
-    </div>
-
+    <div class="card"><span class="tier tg">TOP</span><div class="icon-w"><i class="fa-brands fa-whatsapp"></i></div><div class="cname">Wa B@n & TG B@n</div><div class="ctag">Assistance Wa & TG</div><div class="cdesc">Aide et assistance wa & TG, Wa & TG B@n service,récupération de compte Wa & TG.</div></div>
+    <div class="card"><span class="tier te">PRO</span><div class="icon-w"><i class="fa-solid fa-globe"></i></div><div class="cname">Site Web</div><div class="ctag">Création &amp; Design</div><div class="cdesc">Sites vitrines, portfolios, pages de vente. Design soigné, responsive, optimisé pour tous les appareils.</div></div>
+    <div class="card"><span class="tier tp">DEV</span><div class="icon-w"><i class="fa-solid fa-code"></i></div><div class="cname">Programmation</div><div class="ctag">Bots WhatsApp &amp; Telegram</div><div class="cdesc">Bots personnalisés, scripts automatisés, applications sur mesure pour votre activité.</div></div>
+    <div class="card"><span class="tier tg">EXPERT</span><div class="icon-w"><i class="fa-solid fa-shield-halved"></i></div><div class="cname">Cybersécurité</div><div class="ctag">Audit &amp; Protection</div><div class="cdesc">Audit de sécurité, récupération de compte, protection des données. Service discret et professionnel.</div></div>
+    <div class="card"><span class="tier te">COURS</span><div class="icon-w"><i class="fa-solid fa-graduation-cap"></i></div><div class="cname">Formation</div><div class="ctag">Apprenez l'essentiel</div><div class="cdesc">Formation en programmation, hacking éthique et outils digitaux. Pour débutants et avancés.</div></div>
+    <div class="card"><span class="tier tp">BUSINESS</span><div class="icon-w"><i class="fa-solid fa-chart-simple"></i></div><div class="cname">Gestion Digitale</div><div class="ctag">Community &amp; Stratégie</div><div class="cdesc">Community management, stratégie réseaux sociaux, accompagnement de projet digital.</div></div>
+    <div class="card"><span class="tier tg">PREMIUM</span><div class="icon-w"><i class="fa-brands fa-android"></i></div><div class="cname">APK Premium</div><div class="ctag">Applications débloquées</div><div class="cdesc">CapCut premium, Canva Pro et autres apps modifiées. Fonctionnalités complètes, sans publicité.</div></div>
+    <div class="card"><span class="tier tp">SUR MESURE</span><div class="icon-w"><i class="fa-solid fa-ellipsis"></i></div><div class="cname">Et Autres…</div><div class="ctag">Un besoin spécifique ?</div><div class="cdesc">Contactez-moi directement. Il existe toujours une solution adaptée à votre situation.</div></div>
   </div>
 </section>
 
 <div class="hr"></div>
 
-<!-- ─ ABOUT ───────────────────────────────────── -->
+<!-- ABOUT -->
 <section class="wrap" id="about">
   <h2 class="stitle">ABOUT <span class="ac">ME</span></h2>
   <p class="ssub">L'homme derrière AZIZ TECH</p>
   <div class="about-blk">
-    <div class="about-img">
-      <img src="https://files.catbox.moe/11rwwo.jpg" alt="LORD AZIZ"
-           onerror="this.style.background='linear-gradient(135deg,#0a0a2e,#1a1a4e)'">
-    </div>
+    <div class="about-img"><img src="https://files.catbox.moe/11rwwo.jpg" alt="LORD AZIZ"></div>
     <div class="about-txt">
       <span class="atag">⚡ Fondateur &amp; Expert Tech</span>
       <h3>LORD <span>AZIZ</span></h3>
-      <p>
-        Je suis LORD AZIZ — architecte du numérique, pas juste un prestataire. Depuis mes débuts, j'ai développé une maîtrise rare qui va bien au-delà du code. Bots, cybersécurité, web, apps premium : chaque domaine maîtrisé en profondeur. Ce qui me distingue ? Une vision stratégique, une exigence absolue et la capacité de livrer ce que d'autres ne peuvent même pas concevoir. Quand je prends un projet en main, je ne fais pas le travail — je le transcende.
-      </p>
+      <p>Je suis LORD AZIZ — architecte du numérique, pas juste un prestataire. Depuis mes débuts, j'ai développé une maîtrise rare qui va bien au-delà du code. Bots, cybersécurité, web, apps premium : chaque domaine maîtrisé en profondeur. Ce qui me distingue ? Une vision stratégique, une exigence absolue et la capacité de livrer ce que d'autres ne peuvent même pas concevoir.</p>
     </div>
   </div>
 </section>
 
 <div class="hr"></div>
 
-<!-- ─ CONTACT ─────────────────────────────────── -->
+<!-- CONTACT -->
 <section class="wrap" id="contact">
   <h2 class="stitle">NOUS <span class="ac">CONTACTER</span></h2>
   <p class="ssub">Disponible 24h/24 — réponse rapide garantie</p>
-
   <div class="cbox">
     <h4><i class="fa-solid fa-paper-plane"></i> CONTACT DIRECT</h4>
     <div class="clinks">
-      <a href="https://wa.me/22798498183" target="_blank" rel="noopener" class="cl">
-        <i class="fa-brands fa-whatsapp"></i>
-        <div><span class="cll">WhatsApp</span><span class="clv">+227 98 49 81 83</span></div>
-      </a>
-      <a href="https://t.me/LORD_X_AZIZ" target="_blank" rel="noopener" class="cl">
-        <i class="fa-brands fa-telegram"></i>
-        <div><span class="cll">Telegram</span><span class="clv">@LORD_X_AZIZ</span></div>
-      </a>
-      <a href="mailto:oneaziz444@gmail.com" class="cl">
-        <i class="fa-solid fa-envelope"></i>
-        <div><span class="cll">Gmail</span><span class="clv">oneaziz444@gmail.com</span></div>
-      </a>
+      <a href="https://wa.me/22798498183" target="_blank" rel="noopener" class="cl"><i class="fa-brands fa-whatsapp"></i><div><span class="cll">WhatsApp</span><span class="clv">+227 98 49 81 83</span></div></a>
+      <a href="https://t.me/LORD_X_AZIZ" target="_blank" rel="noopener" class="cl"><i class="fa-brands fa-telegram"></i><div><span class="cll">Telegram</span><span class="clv">@LORD_X_AZIZ</span></div></a>
+      <a href="mailto:oneaziz444@gmail.com" class="cl"><i class="fa-solid fa-envelope"></i><div><span class="cll">Gmail</span><span class="clv">oneaziz444@gmail.com</span></div></a>
     </div>
   </div>
 
-  <!-- REVIEWS -->
+  <!-- REVIEWS CAROUSEL -->
   <div class="rev">
     <h4><i class="fa-solid fa-star"></i> AVIS CLIENTS</h4>
     <div class="car" id="car">
-
-      <div class="slide on"><div class="rav"><img src="https://i.pravatar.cc/100?img=11" alt="Moussa K."></div><div class="rstars">★★★★★</div><p class="rtxt">"Mon compte WhatsApp était inaccessible depuis deux semaines. Aziz m'a guidé dans la procédure officielle en moins de 3 heures. Sérieux, rapide et vraiment efficace."</p><span class="rauth">— Moussa K.</span></div>
-
-      <div class="slide"><div class="rav"><img src="https://i.pravatar.cc/100?img=5" alt="Fatima D."></div><div class="rstars">★★★★★</div><p class="rtxt">"Bot Telegram livré en moins de 24h, personnalisé exactement comme je voulais. Je n'hésite pas à recommander."</p><span class="rauth">— Fatima D.</span></div>
-
-      <div class="slide"><div class="rav"><img src="https://i.pravatar.cc/100?img=53" alt="Ibrahim S."></div><div class="rstars">★★★★★</div><p class="rtxt">"Formation hacking éthique très solide. Pas du remplissage — des cas concrets et des outils qu'on utilise vraiment sur le terrain."</p><span class="rauth">— Ibrahim S.</span></div>
-
-      <div class="slide"><div class="rav"><img src="https://i.pravatar.cc/100?img=20" alt="Amina R."></div><div class="rstars">★★★★★</div><p class="rtxt">"Mon site vitrine est exactement ce que je voulais. Mes clients me font régulièrement des compliments depuis le lancement."</p><span class="rauth">— Amina R.</span></div>
-
-      <div class="slide"><div class="rav"><img src="https://i.pravatar.cc/100?img=33" alt="Youssef M."></div><div class="rstars">★★★★★</div><p class="rtxt">"CapCut premium fonctionne sans aucun problème, toutes les fonctions débloquées et aucune pub. Rapport qualité-prix imbattable."</p><span class="rauth">— Youssef M.</span></div>
-
-      <div class="slide"><div class="rav"><img src="https://i.pravatar.cc/100?img=40" alt="Soraya B."></div><div class="rstars">★★★★★</div><p class="rtxt">"Mes réseaux sociaux ont doublé leurs abonnés en un mois. Des résultats concrets et mesurables. Merci LORD AZIZ."</p><span class="rauth">— Soraya B.</span></div>
-
-      <div class="slide"><div class="rav"><img src="https://i.pravatar.cc/100?img=60" alt="Karim L."></div><div class="rstars">★★★★★</div><p class="rtxt">"Audit de sécurité très sérieux. Il a détecté des failles que toute mon équipe avait manquées. Je recommande sans hésiter."</p><span class="rauth">— Karim L.</span></div>
-
-      <div class="slide"><div class="rav"><img src="https://i.pravatar.cc/100?img=25" alt="Nadia O."></div><div class="rstars">★★★★★</div><p class="rtxt">"Mon bot WhatsApp gère les commandes automatiquement. Je gagne un temps considérable chaque jour. Livraison rapide et propre."</p><span class="rauth">— Nadia O.</span></div>
-
-      <div class="slide"><div class="rav"><img src="https://i.pravatar.cc/100?img=14" alt="Rachid T."></div><div class="rstars">★★★★★</div><p class="rtxt">"Formation Python très bien expliquée avec des exercices pratiques. J'ai créé mon premier script d'automatisation dès la 2e semaine."</p><span class="rauth">— Rachid T.</span></div>
-
-      <div class="slide"><div class="rav"><img src="https://i.pravatar.cc/100?img=45" alt="Leila H."></div><div class="rstars">★★★★★</div><p class="rtxt">"Site e-commerce avec paiement intégré livré dans les délais. Tout tourne parfaitement. Travail propre et professionnel."</p><span class="rauth">— Leila H.</span></div>
-
-      <div class="slide"><div class="rav"><img src="https://i.pravatar.cc/100?img=7" alt="Omar F."></div><div class="rstars">★★★★★</div><p class="rtxt">"Compte récupéré via la procédure officielle en quelques heures. Rapide, discret, professionnel. Ce service change vraiment la donne."</p><span class="rauth">— Omar F.</span></div>
-
-      <div class="slide"><div class="rav"><img src="https://i.pravatar.cc/100?img=55" alt="Aïcha D."></div><div class="rstars">★★★★★</div><p class="rtxt">"Canva Pro APK, toutes les fonctions disponibles sans bug. Qualité premium pour le prix. Je reviens régulièrement."</p><span class="rauth">— Aïcha D.</span></div>
-
+      <div class="slide on"><div class="rav"><img src="https://i.pravatar.cc/100?img=11" alt=""></div><div class="rstars">★★★★★</div><p class="rtxt">"Mon compte WhatsApp était inaccessible. Aziz m'a guidé pour le récupérer en moins de 3 heures. Sérieux et efficace."</p><span class="rauth">— Moussa K.</span></div>
+      <div class="slide"><div class="rav"><img src="https://i.pravatar.cc/100?img=5" alt=""></div><div class="rstars">★★★★★</div><p class="rtxt">"Bot Telegram livré en moins de 24h, personnalisé exactement comme je voulais. Je n'hésite pas à recommander."</p><span class="rauth">— Fatima D.</span></div>
+      <div class="slide"><div class="rav"><img src="https://i.pravatar.cc/100?img=53" alt=""></div><div class="rstars">★★★★★</div><p class="rtxt">"Formation hacking éthique très solide. Des cas concrets et des outils qu'on utilise vraiment sur le terrain."</p><span class="rauth">— Ibrahim S.</span></div>
+      <div class="slide"><div class="rav"><img src="https://i.pravatar.cc/100?img=20" alt=""></div><div class="rstars">★★★★★</div><p class="rtxt">"Mon site vitrine est exactement ce que je voulais. Mes clients me font régulièrement des compliments."</p><span class="rauth">— Amina R.</span></div>
+      <div class="slide"><div class="rav"><img src="https://i.pravatar.cc/100?img=33" alt=""></div><div class="rstars">★★★★★</div><p class="rtxt">"CapCut premium fonctionne parfaitement, toutes les fonctions débloquées et aucune pub. Imbattable."</p><span class="rauth">— Youssef M.</span></div>
+      <div class="slide"><div class="rav"><img src="https://i.pravatar.cc/100?img=40" alt=""></div><div class="rstars">★★★★★</div><p class="rtxt">"Mes réseaux sociaux ont doublé leurs abonnés en un mois. Des résultats concrets et mesurables."</p><span class="rauth">— Soraya B.</span></div>
+      <div class="slide"><div class="rav"><img src="https://i.pravatar.cc/100?img=60" alt=""></div><div class="rstars">★★★★★</div><p class="rtxt">"Audit de sécurité très sérieux. Il a détecté des failles que toute mon équipe avait manquées."</p><span class="rauth">— Karim L.</span></div>
+      <div class="slide"><div class="rav"><img src="https://i.pravatar.cc/100?img=25" alt=""></div><div class="rstars">★★★★★</div><p class="rtxt">"Mon bot WhatsApp gère les commandes automatiquement. Je gagne un temps considérable chaque jour."</p><span class="rauth">— Nadia O.</span></div>
+      <div class="slide"><div class="rav"><img src="https://i.pravatar.cc/100?img=14" alt=""></div><div class="rstars">★★★★★</div><p class="rtxt">"Formation Python très bien expliquée. J'ai créé mon premier script d'automatisation dès la 2e semaine."</p><span class="rauth">— Rachid T.</span></div>
+      <div class="slide"><div class="rav"><img src="https://i.pravatar.cc/100?img=45" alt=""></div><div class="rstars">★★★★★</div><p class="rtxt">"Site e-commerce livré dans les délais. Tout tourne parfaitement. Travail propre et professionnel."</p><span class="rauth">— Leila H.</span></div>
+      <div class="slide"><div class="rav"><img src="https://i.pravatar.cc/100?img=7" alt=""></div><div class="rstars">★★★★★</div><p class="rtxt">"Compte récupéré en quelques heures. Rapide, discret, professionnel. Ce service change vraiment la donne."</p><span class="rauth">— Omar F.</span></div>
+      <div class="slide"><div class="rav"><img src="https://i.pravatar.cc/100?img=55" alt=""></div><div class="rstars">★★★★★</div><p class="rtxt">"Canva Pro APK, toutes les fonctions disponibles sans bug. Qualité premium. Je reviens régulièrement."</p><span class="rauth">— Aïcha D.</span></div>
     </div>
     <div class="dots" id="dotsEl"></div>
     <div class="cnav">
@@ -809,10 +529,9 @@ body{
     </div>
   </div>
 
-  <!-- FORM -->
+  <!-- FORM AVIS -->
   <div class="fblock">
     <h4><i class="fa-solid fa-pen-nib"></i> LAISSER UN AVIS</h4>
-
     <div class="sgrp">
       <span class="starlbl">Votre note</span>
       <div class="stars">
@@ -823,7 +542,6 @@ body{
         <input type="radio" name="rating" id="s1" value="1"><label for="s1">★</label>
       </div>
     </div>
-
     <form id="cForm" novalidate>
       <div class="frow">
         <div class="fg"><label>Votre Nom</label><input type="text" id="cName" placeholder="Votre nom…" required></div>
@@ -838,360 +556,86 @@ body{
     </form>
     <div class="fb" id="fbEl"></div>
   </div>
-
 </section>
 
-<!-- ─ FOOTER ──────────────────────────────────── -->
-<footer class="footer">
-  <p>&copy; 2026 <span>AZIZ TECH</span> — LORD AZIZ. Tous droits réservés.</p>
-</footer>
+<footer class="footer"><p>&copy; 2026 <span>AZIZ TECH</span> — LORD AZIZ. Tous droits réservés.</p></footer>
 
-<!-- ─ ASSISTANT WIDGET ────────────────────────── -->
-<style>
-/* ── ASSISTANT ── */
-.ast-bubble{
-  position:fixed;bottom:27px;left:27px;width:52px;height:52px;
-  border-radius:50%;background:linear-gradient(135deg,var(--vio),var(--cyan));
-  border:none;cursor:pointer;z-index:999;
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:0 0 20px rgba(139,92,246,.5);
-  transition:transform var(--ease),box-shadow var(--ease);
-  animation:neon 3s ease-in-out infinite;
-}
-.ast-bubble:hover{transform:scale(1.1)}
-.ast-bubble i{font-size:22px;color:#fff}
-.ast-notif{
-  position:absolute;top:-4px;right:-4px;width:16px;height:16px;
-  background:var(--red);border-radius:50%;font-size:.55rem;
-  color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;
-  border:2px solid var(--deep);animation:starPop .5s ease infinite alternate;
-}
-.ast-panel{
-  position:fixed;bottom:92px;left:27px;width:320px;
-  background:rgba(5,5,18,.98);border:1px solid rgba(139,92,246,.3);
-  border-radius:20px;z-index:998;display:none;flex-direction:column;
-  box-shadow:0 22px 60px rgba(0,0,0,.8),0 0 30px rgba(139,92,246,.15);
-  backdrop-filter:blur(24px);overflow:hidden;
-  max-height:520px;
-}
-.ast-panel.on{display:flex;animation:up .3s ease}
-.ast-head{
-  padding:14px 18px;
-  background:linear-gradient(135deg,rgba(139,92,246,.18),rgba(0,212,255,.1));
-  border-bottom:1px solid rgba(139,92,246,.2);
-  display:flex;align-items:center;gap:11px;
-}
-.ast-ava{
-  width:38px;height:38px;border-radius:50%;overflow:hidden;
-  border:2px solid rgba(0,212,255,.4);flex-shrink:0;
-}
-.ast-ava img{width:100%;height:100%;object-fit:cover}
-.ast-info{flex:1}
-.ast-name{font-family:'Orbitron',monospace;font-size:.72rem;font-weight:700;color:#fff;letter-spacing:1px}
-.ast-status{font-size:.62rem;color:#4ade80;letter-spacing:.5px}
-.ast-status::before{content:'● ';font-size:.5rem}
-.ast-close{background:none;border:none;color:var(--mut);cursor:pointer;font-size:.9rem;padding:4px;transition:color var(--ease)}
-.ast-close:hover{color:#fff}
-.ast-msgs{
-  flex:1;overflow-y:auto;padding:16px;
-  display:flex;flex-direction:column;gap:10px;
-  scrollbar-width:thin;scrollbar-color:rgba(139,92,246,.2) transparent;
-}
-.ast-msgs::-webkit-scrollbar{width:3px}
-.ast-msgs::-webkit-scrollbar-thumb{background:rgba(139,92,246,.3);border-radius:2px}
-/* Messages */
-.msg{display:flex;gap:8px;align-items:flex-end;animation:up .3s ease}
-.msg.bot{flex-direction:row}
-.msg.usr{flex-direction:row-reverse}
-.msg-ava{
-  width:28px;height:28px;border-radius:50%;overflow:hidden;
-  flex-shrink:0;border:1.5px solid rgba(0,212,255,.3);
-}
-.msg-ava img{width:100%;height:100%;object-fit:cover}
-.msg-ava.u{background:linear-gradient(135deg,var(--vio),var(--cyan));
-  display:flex;align-items:center;justify-content:center;
-  font-size:.65rem;color:#fff;font-weight:800;border-color:rgba(139,92,246,.4)}
-.bubble{
-  max-width:210px;padding:10px 14px;border-radius:14px;
-  font-size:.8rem;line-height:1.55;
-}
-.msg.bot .bubble{
-  background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.2);
-  color:var(--txt);border-bottom-left-radius:4px;
-}
-.msg.usr .bubble{
-  background:linear-gradient(135deg,rgba(0,212,255,.15),rgba(139,92,246,.15));
-  border:1px solid rgba(0,212,255,.25);
-  color:#fff;border-bottom-right-radius:4px;
-}
-/* Typing indicator */
-.typing{display:flex;gap:4px;padding:12px 14px;align-items:center}
-.typing span{
-  width:6px;height:6px;border-radius:50%;
-  background:var(--vio);display:inline-block;
-  animation:typeDot 1.2s ease-in-out infinite;
-}
-.typing span:nth-child(2){animation-delay:.2s}
-.typing span:nth-child(3){animation-delay:.4s}
-@keyframes typeDot{0%,80%,100%{transform:scale(.6);opacity:.4}40%{transform:scale(1);opacity:1}}
-/* Buttons zone */
-.ast-btns{
-  padding:12px 16px 16px;
-  display:flex;flex-wrap:wrap;gap:8px;
-  border-top:1px solid rgba(139,92,246,.1);
-  background:rgba(0,0,0,.2);
-}
-.ast-btn{
-  padding:8px 14px;border-radius:50px;font-size:.72rem;font-weight:700;
-  border:1.5px solid rgba(0,212,255,.3);background:rgba(0,212,255,.05);
-  color:var(--cyan);cursor:pointer;transition:all var(--ease);
-  letter-spacing:.5px;font-family:'Exo 2',sans-serif;
-}
-.ast-btn:hover{background:rgba(0,212,255,.12);border-color:var(--cyan);box-shadow:0 0 14px rgba(0,212,255,.2)}
-.ast-btn.vio{border-color:rgba(139,92,246,.4);background:rgba(139,92,246,.06);color:var(--vio)}
-.ast-btn.vio:hover{background:rgba(139,92,246,.14);border-color:var(--vio)}
-.ast-btn.red{border-color:rgba(239,68,68,.4);background:rgba(239,68,68,.06);color:var(--red)}
-.ast-btn.red:hover{background:rgba(239,68,68,.12);border-color:var(--red)}
-.ast-btn.gold{border-color:rgba(240,192,64,.4);background:rgba(240,192,64,.06);color:var(--gold)}
-.ast-btn.gold:hover{background:rgba(240,192,64,.12);border-color:var(--gold)}
-</style>
-
-<!-- Bubble toggle -->
-<button class="ast-bubble" id="astBubble" aria-label="Assistant AZIZ TECH">
-  <i class="fa-solid fa-robot"></i>
-  <span class="ast-notif">1</span>
-</button>
-
-<!-- Panel -->
-<div class="ast-panel" id="astPanel">
-  <div class="ast-head">
-    <div class="ast-ava"><img src="https://files.catbox.moe/kxhm35.png" alt="Assistant"></div>
-    <div class="ast-info">
-      <div class="ast-name">AZIZ TECH</div>
-      <div class="ast-status">En ligne — répond instantanément</div>
-    </div>
-    <button class="ast-close" id="astClose"><i class="fa-solid fa-xmark"></i></button>
-  </div>
-  <div class="ast-msgs" id="astMsgs"></div>
-  <div class="ast-btns" id="astBtns"></div>
-</div>
-
-<script>
-/* ══════════════════════════════════════
-   ASSISTANT AZIZ TECH — FLOW PAR BOUTONS
-   ══════════════════════════════════════ */
-const astBubble = document.getElementById('astBubble');
-const astPanel  = document.getElementById('astPanel');
-const astClose  = document.getElementById('astClose');
-const astMsgs   = document.getElementById('astMsgs');
-const astBtns   = document.getElementById('astBtns');
-const notif     = astBubble.querySelector('.ast-notif');
-
-/* ─── FLOW COMPLET ─────────────────────────── */
-const FLOW = {
-  start: {
-    msg: `👋 Bonjour ! Je suis l'assistant virtuel d'<b>AZIZ TECH</b>.<br><br>Bienvenue ! C'est moi qui vais vous orienter vers le bon service. Comment puis-je vous aider aujourd'hui ?`,
-    btns: [
-      { label: '📱 WhatsApp',      style: '',     next: 'whatsapp' },
-      { label: '🌐 Site Web',      style: 'vio',  next: 'web'      },
-      { label: '🤖 Bot / Script',  style: '',     next: 'bot'      },
-      { label: '🛡️ Cybersécurité', style: 'red',  next: 'cyber'    },
-      { label: '📦 APK Premium',   style: 'gold', next: 'apk'      },
-      { label: '🎓 Formation',     style: 'vio',  next: 'formation'},
-      { label: '💼 Autre service', style: '',     next: 'autre'    },
-    ]
-  },
-  whatsapp: {
-    msg: `📱 <b>Assistance WhatsApp</b><br><br>Vous avez besoin d'aide pour votre compte WhatsApp ? Voici ce que nous proposons :<br><br>• Aide à la récupération de compte<br>• Configuration WhatsApp Business<br>• Bot WhatsApp personnalisé<br><br>Pour démarrer, contactez-nous directement 👇`,
-    btns: [
-      { label: '💬 WhatsApp : +227 98 49 81 83', style: '',    link: 'https://wa.me/22798498183' },
-      { label: '✈️ Telegram : @LORD_X_AZIZ',     style: 'vio', link: 'https://t.me/LORD_X_AZIZ'  },
-      { label: '← Retour',                        style: 'red', next: 'start'                      },
-    ]
-  },
-  web: {
-    msg: `🌐 <b>Création de Site Web</b><br><br>Nous concevons des sites professionnels sur mesure :<br><br>• Site vitrine / Portfolio<br>• Page de vente / Landing page<br>• Site e-commerce avec paiement<br>• Design responsive & moderne<br><br>Délai de livraison : <b>24h à 72h</b> selon la complexité.`,
-    btns: [
-      { label: '📩 Demander un devis',      style: '',    link: 'https://wa.me/22798498183' },
-      { label: '✈️ Via Telegram',           style: 'vio', link: 'https://t.me/LORD_X_AZIZ'  },
-      { label: '📧 Email : oneaziz444@gmail.com', style: 'gold', link: 'mailto:oneaziz444@gmail.com' },
-      { label: '← Retour',                  style: 'red', next: 'start' },
-    ]
-  },
-  bot: {
-    msg: `🤖 <b>Bots & Scripts Personnalisés</b><br><br>Nous développons des bots intelligents :<br><br>• Bot Telegram (menu, commandes, automatisation)<br>• Bot WhatsApp (réponses auto, gestion clients)<br>• Scripts Python / automatisation<br>• Applications sur mesure<br><br>Chaque bot est <b>100% personnalisé</b> selon vos besoins.`,
-    btns: [
-      { label: '💬 Discuter du projet',  style: '',    link: 'https://wa.me/22798498183' },
-      { label: '✈️ Telegram',            style: 'vio', link: 'https://t.me/LORD_X_AZIZ'  },
-      { label: '← Retour',              style: 'red', next: 'start' },
-    ]
-  },
-  cyber: {
-    msg: `🛡️ <b>Cybersécurité</b><br><br>Service professionnel & discret :<br><br>• Audit de sécurité complet<br>• Récupération de compte piraté<br>• Protection des données personnelles<br>• Détection de failles & vulnérabilités<br><br>⚠️ <i>Tous nos services respectent le cadre légal en vigueur.</i>`,
-    btns: [
-      { label: '🔒 Contacter en privé',  style: 'red', link: 'https://t.me/LORD_X_AZIZ'  },
-      { label: '💬 WhatsApp',            style: '',    link: 'https://wa.me/22798498183' },
-      { label: '← Retour',              style: 'vio', next: 'start' },
-    ]
-  },
-  apk: {
-    msg: `📦 <b>APK Premium</b><br><br>Applications débloquées & sans publicité :<br><br>• CapCut Premium<br>• Canva Pro<br>• Et bien d'autres apps modifiées<br><br>✅ Fonctionnalités complètes débloquées<br>✅ Mises à jour disponibles<br>✅ Livraison immédiate`,
-    btns: [
-      { label: '🛒 Commander maintenant', style: 'gold', link: 'https://wa.me/22798498183' },
-      { label: '✈️ Telegram',             style: 'vio',  link: 'https://t.me/LORD_X_AZIZ'  },
-      { label: '← Retour',               style: 'red',  next: 'start' },
-    ]
-  },
-  formation: {
-    msg: `🎓 <b>Formation Tech</b><br><br>Apprenez avec un expert :<br><br>• Programmation Python (débutant → avancé)<br>• Hacking éthique & cybersécurité<br>• Création de bots & automatisation<br>• Outils digitaux & réseaux sociaux<br><br>📅 Sessions individuelles ou en groupe.<br>🎯 Programme adapté à votre niveau.`,
-    btns: [
-      { label: '📚 S\'inscrire',     style: 'vio', link: 'https://wa.me/22798498183' },
-      { label: '✈️ Telegram',        style: '',    link: 'https://t.me/LORD_X_AZIZ'  },
-      { label: '← Retour',          style: 'red', next: 'start' },
-    ]
-  },
-  autre: {
-    msg: `💼 <b>Service personnalisé</b><br><br>Votre besoin ne figure pas dans la liste ? Pas de problème — <b>LORD AZIZ</b> propose également :<br><br>• Community management<br>• Stratégie réseaux sociaux<br>• Gestion de projet digital<br>• Toute demande sur mesure<br><br>Décrivez votre besoin et nous trouverons une solution adaptée.`,
-    btns: [
-      { label: '💬 WhatsApp',              style: '',    link: 'https://wa.me/22798498183'         },
-      { label: '✈️ Telegram',              style: 'vio', link: 'https://t.me/LORD_X_AZIZ'          },
-      { label: '📧 Email',                 style: 'gold', link: 'mailto:oneaziz444@gmail.com'       },
-      { label: '← Retour au menu',        style: 'red', next: 'start' },
-    ]
-  }
-};
-
-/* ─── HELPERS ──────────────────────────────── */
-function addMsg(html, side='bot'){
-  const wrap = document.createElement('div');
-  wrap.className = `msg ${side}`;
-  const ava = document.createElement('div');
-  ava.className = 'msg-ava' + (side==='usr' ? ' u' : '');
-  if(side==='bot'){
-    ava.innerHTML = `<img src="https://files.catbox.moe/kxhm35.png" alt="Bot">`;
-  } else {
-    ava.textContent = 'V';
-  }
-  const bub = document.createElement('div');
-  bub.className = 'bubble';
-  bub.innerHTML = html;
-  wrap.appendChild(ava);
-  wrap.appendChild(bub);
-  astMsgs.appendChild(wrap);
-  astMsgs.scrollTop = astMsgs.scrollHeight;
-}
-
-function showTyping(){
-  const t = document.createElement('div');
-  t.className = 'msg bot'; t.id = 'typingEl';
-  t.innerHTML = `<div class="msg-ava"><img src="https://files.catbox.moe/kxhm35.png"></div>
-    <div class="bubble typing"><span></span><span></span><span></span></div>`;
-  astMsgs.appendChild(t);
-  astMsgs.scrollTop = astMsgs.scrollHeight;
-  return t;
-}
-
-function renderStep(key){
-  const step = FLOW[key];
-  if(!step) return;
-  // Typing animation then message
-  const t = showTyping();
-  setTimeout(() => {
-    t.remove();
-    addMsg(step.msg, 'bot');
-    // Buttons
-    astBtns.innerHTML = '';
-    step.btns.forEach(b => {
-      const btn = document.createElement('button');
-      btn.className = `ast-btn ${b.style || ''}`;
-      btn.textContent = b.label;
-      if(b.link){
-        btn.addEventListener('click', () => {
-          addMsg(b.label, 'usr');
-          astBtns.innerHTML = '';
-          setTimeout(() => {
-            const t2 = showTyping();
-            setTimeout(() => {
-              t2.remove();
-              addMsg(`✅ Parfait ! Vous allez être redirigé vers notre contact.<br>Notre équipe vous répondra dans les plus brefs délais. 🚀`, 'bot');
-              astBtns.innerHTML = `<button class="ast-btn red" id="backMain">← Menu principal</button>`;
-              document.getElementById('backMain').addEventListener('click', () => {
-                addMsg('← Menu principal', 'usr');
-                setTimeout(() => renderStep('start'), 400);
-              });
-              setTimeout(() => window.open(b.link, '_blank'), 800);
-            }, 900);
-          }, 300);
-        });
-      } else if(b.next){
-        btn.addEventListener('click', () => {
-          addMsg(b.label, 'usr');
-          astBtns.innerHTML = '';
-          setTimeout(() => renderStep(b.next), 400);
-        });
-      }
-      astBtns.appendChild(btn);
-    });
-  }, 950);
-}
-
-/* ─── INIT ─────────────────────────────────── */
-let started = false;
-astBubble.addEventListener('click', () => {
-  astPanel.classList.toggle('on');
-  notif.style.display = 'none';
-  if(!started){ started = true; renderStep('start'); }
-});
-astClose.addEventListener('click', () => astPanel.classList.remove('on'));
-</script>
-
-<!-- ─ FLOATING ────────────────────────────────── -->
-<button class="fbtn" id="fbtn" aria-label="Nos canaux"><i class="fa-solid fa-share-nodes"></i></button>
+<!-- FLOATING SHARE -->
+<button class="fbtn" id="fbtn"><i class="fa-solid fa-share-nodes"></i></button>
 <div class="fpanel" id="fpanel">
   <a href="https://whatsapp.com/channel/0029VbBidXg6BIEm6AM3FA0K" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> Chaîne WhatsApp</a>
   <a href="https://t.me/xizlegion" target="_blank" rel="noopener"><i class="fa-brands fa-telegram"></i> Canal Telegram</a>
   <a href="https://youtube.com/@lord_x_aziz?si=cE9l1aqoHFjL7dcM" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i> YouTube</a>
 </div>
 
+<!-- ══ CHAT ASSISTANT ══ -->
+<button class="chat-fab" id="chatFab">
+  <i class="fa-solid fa-comments"></i>
+  <span class="chat-notif" id="chatNotif">1</span>
+</button>
+
+<div class="chat-win" id="chatWin">
+  <!-- Header -->
+  <div class="chat-head">
+    <div class="chat-head-ava">
+      <img src="https://files.catbox.moe/kxhm35.png" alt="Assistant">
+      <div class="chat-online"></div>
+    </div>
+    <div class="chat-head-info">
+      <div class="chat-head-name">AZIZ TECH</div>
+      <div class="chat-head-status">● En ligne — répond instantanément</div>
+    </div>
+    <button class="chat-head-close" id="chatClose"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <!-- Messages -->
+  <div class="chat-body" id="chatBody"></div>
+  <!-- Boutons de choix -->
+  <div class="chat-choices" id="chatChoices"></div>
+</div>
+
 <script>
-/* ── TELEGRAM CONFIG ─────────────────────────── */
-const TG      = 'https://api.telegram.org/bot8601722613:AAFg2DP3wV4QBHCCO4c6Z8tVfcfA5nW7_F8';
-const CHAT_ID = '8584784525'; // ✅ FIXÉ — LORD_X_AZIZ
+/* ═══════════════════════════════════════
+   TELEGRAM — chat_id HARDCODÉ ✅
+   ═══════════════════════════════════════ */
+const TG_TOKEN = '8601722613:AAFg2DP3wV4QBHCCO4c6Z8tVfcfA5nW7_F8';
+const TG_URL   = 'https://api.telegram.org/bot' + TG_TOKEN;
+const CHAT_ID  = '8584784525'; // LORD_X_AZIZ
 
 async function sendTG(name, email, comment, rating){
   try{
     const stars = '⭐'.repeat(rating);
     const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-    const msg = `🔔 <b>Nouvel Avis — AZIZ TECH</b>\n\n👤 <b>Nom :</b> ${esc(name)}\n📧 <b>Email :</b> ${esc(email)}\n${stars} <b>Note :</b> ${rating}/5\n\n💬 <b>Message :</b>\n${esc(comment)}`;
-    const r = await fetch(TG + '/sendMessage', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({chat_id: CHAT_ID, text: msg, parse_mode: 'HTML'})
+    const msg = `🔔 <b>Nouvel Avis — AZIZ TECH</b>\n\n👤 <b>Nom :</b> ${esc(name)}\n📧 <b>Email :</b> ${esc(email)}\n${stars} <b>Note :</b> ${rating}/5\n\n💬 <b>Commentaire :</b>\n${esc(comment)}`;
+    const res = await fetch(TG_URL + '/sendMessage', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({chat_id: CHAT_ID, text: msg, parse_mode:'HTML'})
     }).then(r => r.json());
-    return r.ok;
-  } catch(e){ console.warn('TG:', e); return false; }
+    return res.ok;
+  } catch(e){ console.warn('TG error:', e); return false; }
 }
 
-/* ── HEADER ──────────────────────────────────── */
-const hdr = document.getElementById('hdr');
-window.addEventListener('scroll', () => hdr.classList.toggle('on', scrollY > 60), {passive: true});
+/* ═══════════════════════════════════════
+   HEADER SCROLL
+   ═══════════════════════════════════════ */
+window.addEventListener('scroll', () => document.getElementById('hdr').classList.toggle('on', scrollY > 60), {passive:true});
 
-/* ── BURGER ──────────────────────────────────── */
+/* BURGER */
 const burger = document.getElementById('burger');
 const navUl  = document.getElementById('navUl');
 burger.addEventListener('click', () => { burger.classList.toggle('on'); navUl.classList.toggle('on'); });
 navUl.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { burger.classList.remove('on'); navUl.classList.remove('on'); }));
 
-/* ── SMOOTH SCROLL ───────────────────────────── */
+/* SMOOTH SCROLL */
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
     const t = document.querySelector(a.getAttribute('href'));
-    if(t){ e.preventDefault(); t.scrollIntoView({behavior: 'smooth', block: 'start'}); }
+    if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth', block:'start'}); }
   });
 });
 
-/* ── STATS COUNTER ───────────────────────────── */
-function counter(){
+/* COUNTER */
+function runCounter(){
   document.querySelectorAll('.sv[data-t]').forEach(el => {
     const target = +el.dataset.t, suf = el.dataset.s || '';
     let start = null;
@@ -1199,87 +643,228 @@ function counter(){
     function step(ts){
       if(!start) start = ts;
       const p = Math.min((ts - start) / dur, 1);
-      const ease = 1 - Math.pow(1 - p, 3);
-      el.textContent = Math.round(ease * target) + suf;
+      el.textContent = Math.round((1 - Math.pow(1-p, 3)) * target) + suf;
       if(p < 1) requestAnimationFrame(step);
     }
     requestAnimationFrame(step);
   });
 }
 const statsEl = document.querySelector('.stats');
-const obs = new IntersectionObserver(en => { if(en[0].isIntersecting){ counter(); obs.unobserve(statsEl); } }, {threshold: .5});
-obs.observe(statsEl);
+new IntersectionObserver(en => { if(en[0].isIntersecting){ runCounter(); } }, {threshold:.5}).observe(statsEl);
 
-/* ── CAROUSEL ────────────────────────────────── */
+/* CAROUSEL */
 const slides = Array.from(document.querySelectorAll('.slide'));
 const dotsEl = document.getElementById('dotsEl');
 let cur = 0, timer;
-
-slides.forEach((_, i) => {
+slides.forEach((_,i) => {
   const d = document.createElement('button');
-  d.className = 'dot' + (i === 0 ? ' on' : '');
-  d.setAttribute('aria-label', 'Avis ' + (i + 1));
+  d.className = 'dot' + (i===0?' on':'');
   d.addEventListener('click', () => go(i));
   dotsEl.appendChild(d);
 });
-
 function go(n){
-  slides[cur].classList.remove('on');
-  dotsEl.children[cur].classList.remove('on');
+  slides[cur].classList.remove('on'); dotsEl.children[cur].classList.remove('on');
   cur = (n + slides.length) % slides.length;
-  slides[cur].classList.add('on');
-  dotsEl.children[cur].classList.add('on');
-  clearInterval(timer);
-  timer = setInterval(() => go(cur + 1), 7000);
+  slides[cur].classList.add('on'); dotsEl.children[cur].classList.add('on');
+  clearInterval(timer); timer = setInterval(() => go(cur+1), 7000);
 }
-document.getElementById('prevB').addEventListener('click', () => go(cur - 1));
-document.getElementById('nextB').addEventListener('click', () => go(cur + 1));
-timer = setInterval(() => go(cur + 1), 7000);
+document.getElementById('prevB').addEventListener('click', () => go(cur-1));
+document.getElementById('nextB').addEventListener('click', () => go(cur+1));
+timer = setInterval(() => go(cur+1), 7000);
 
-/* ── FLOATING ────────────────────────────────── */
+/* SHARE PANEL */
 const fbtn   = document.getElementById('fbtn');
 const fpanel = document.getElementById('fpanel');
 fbtn.addEventListener('click', () => fpanel.classList.toggle('on'));
 document.addEventListener('click', e => { if(!fbtn.contains(e.target) && !fpanel.contains(e.target)) fpanel.classList.remove('on'); });
 
-/* ── WORD COUNTER ────────────────────────────── */
+/* WORD COUNTER */
 const cText = document.getElementById('cText');
 const wcEl  = document.getElementById('wcEl');
-const MAX   = 100;
+const MAX = 100;
 cText.addEventListener('input', () => {
   const w = cText.value.trim() === '' ? 0 : cText.value.trim().split(/\s+/).length;
   wcEl.textContent = w + ' / ' + MAX + ' MOTS';
-  wcEl.className = 'wc' + (w > MAX * .8 && w <= MAX ? ' w' : w > MAX ? ' o' : '');
+  wcEl.className = 'wc' + (w > MAX*.8 && w <= MAX ? ' w' : w > MAX ? ' o' : '');
 });
 
-/* ── FORM SUBMIT ─────────────────────────────── */
+/* FORM SUBMIT */
 const cForm = document.getElementById('cForm');
 const fbEl  = document.getElementById('fbEl');
-function showFb(type, msg){
-  fbEl.textContent = msg; fbEl.className = 'fb ' + type; fbEl.style.display = 'block';
-  setTimeout(() => { fbEl.style.display = 'none'; }, 5500);
-}
+function showFb(type, msg){ fbEl.textContent=msg; fbEl.className='fb '+type; fbEl.style.display='block'; setTimeout(()=>fbEl.style.display='none',5500); }
 cForm.addEventListener('submit', async e => {
   e.preventDefault();
   const name   = document.getElementById('cName').value.trim();
   const email  = document.getElementById('cEmail').value.trim();
   const txt    = cText.value.trim();
   const rating = +(document.querySelector('input[name="rating"]:checked')?.value || 0);
-  const w      = txt === '' ? 0 : txt.split(/\s+/).length;
-  if(!name || !email || !txt) return showFb('err', '⚠️ Veuillez remplir tous les champs.');
-  if(w > MAX) return showFb('err', `⚠️ Maximum ${MAX} mots (${w} actuellement).`);
-  if(!rating) return showFb('err', '⭐ Veuillez attribuer une note.');
+  const w = txt==='' ? 0 : txt.split(/\s+/).length;
+  if(!name || !email || !txt) return showFb('err','⚠️ Veuillez remplir tous les champs.');
+  if(w > MAX) return showFb('err',`⚠️ Maximum ${MAX} mots (${w} actuellement).`);
+  if(!rating) return showFb('err','⭐ Veuillez attribuer une note.');
   const btn = cForm.querySelector('.bsub');
-  btn.disabled = true; btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Envoi…';
+  btn.disabled = true; btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Envoi en cours…';
   const ok = await sendTG(name, email, txt, rating);
   btn.disabled = false; btn.innerHTML = '<i class="fa-solid fa-rocket"></i> Envoyer';
   if(ok){
     showFb('ok', `✅ Merci ${name} ! Votre avis a bien été reçu.`);
-    cForm.reset(); wcEl.textContent = '0 / ' + MAX + ' MOTS'; wcEl.className = 'wc';
+    cForm.reset(); wcEl.textContent = '0 / '+MAX+' MOTS'; wcEl.className = 'wc';
   } else {
-    showFb('err', '⚠️ Erreur d\'envoi. Réessayez ou contactez-nous directement.');
+    showFb('err','⚠️ Erreur d\'envoi. Contactez-nous directement sur WhatsApp ou Telegram.');
   }
 });
+
+/* ═══════════════════════════════════════
+   CHAT ASSISTANT — FLOW BOUTONS
+   ═══════════════════════════════════════ */
+const chatFab     = document.getElementById('chatFab');
+const chatWin     = document.getElementById('chatWin');
+const chatClose   = document.getElementById('chatClose');
+const chatBody    = document.getElementById('chatBody');
+const chatChoices = document.getElementById('chatChoices');
+const chatNotif   = document.getElementById('chatNotif');
+const AVA_IMG     = 'https://files.catbox.moe/kxhm35.png';
+let chatStarted   = false;
+
+/* FLOW */
+const FLOW = {
+  menu:{
+    bot:`👋 Bonjour ! Je suis l'assistant <b>AZIZ TECH</b>.<br>Comment puis-je vous aider aujourd'hui ?`,
+    choices:[
+      {label:'📱 Assistance WhatsApp', next:'whatsapp'},
+      {label:'🌐 Création Site Web',   next:'web'},
+      {label:'🤖 Bot / Script',        next:'bot'},
+      {label:'🛡️ Cybersécurité',       next:'cyber', cls:'v'},
+      {label:'📦 APK Premium',         next:'apk',   cls:'g'},
+      {label:'🎓 Formation',           next:'formation', cls:'v'},
+      {label:'💼 Autre demande',       next:'autre'},
+    ]
+  },
+  whatsapp:{
+    bot:`📱 <b>Assistance WhatsApp</b><br><br>Nous vous accompagnons pour :<br>• Récupération de compte inaccessible<br>• Configuration WhatsApp Business<br>• Bot WhatsApp automatisé<br><br>Choisissez comment nous contacter 👇`,
+    choices:[
+      {label:'💬 WhatsApp',  link:'https://wa.me/22798498183'},
+      {label:'✈️ Telegram',  link:'https://t.me/LORD_X_AZIZ', cls:'v'},
+      {label:'📧 Email',     link:'mailto:oneaziz444@gmail.com', cls:'g'},
+      {label:'← Retour',    next:'menu', cls:'r'},
+    ]
+  },
+  web:{
+    bot:`🌐 <b>Création de Site Web</b><br><br>Nous réalisons :<br>• Site vitrine / Portfolio<br>• Landing page / Page de vente<br>• Site e-commerce avec paiement<br>• Design responsive &amp; moderne<br><br>⏱️ Livraison sous <b>24h à 72h</b>.`,
+    choices:[
+      {label:'📩 Demander un devis', link:'https://wa.me/22798498183'},
+      {label:'✈️ Telegram',          link:'https://t.me/LORD_X_AZIZ', cls:'v'},
+      {label:'📧 Email',             link:'mailto:oneaziz444@gmail.com', cls:'g'},
+      {label:'← Retour',            next:'menu', cls:'r'},
+    ]
+  },
+  bot:{
+    bot:`🤖 <b>Bots &amp; Scripts</b><br><br>Nous développons :<br>• Bot Telegram (menu, auto-réponse)<br>• Bot WhatsApp (gestion clients)<br>• Scripts Python / automatisation<br>• Applications sur mesure<br><br>Chaque bot est <b>100% personnalisé</b>.`,
+    choices:[
+      {label:'💬 Discuter du projet', link:'https://wa.me/22798498183'},
+      {label:'✈️ Telegram',           link:'https://t.me/LORD_X_AZIZ', cls:'v'},
+      {label:'← Retour',             next:'menu', cls:'r'},
+    ]
+  },
+  cyber:{
+    bot:`🛡️ <b>Cybersécurité</b><br><br>Service professionnel &amp; discret :<br>• Audit de sécurité complet<br>• Récupération de compte piraté<br>• Protection des données<br>• Détection de failles<br><br>⚠️ <i>Services conformes au cadre légal.</i>`,
+    choices:[
+      {label:'🔒 Contacter en privé', link:'https://t.me/LORD_X_AZIZ', cls:'v'},
+      {label:'💬 WhatsApp',           link:'https://wa.me/22798498183'},
+      {label:'← Retour',             next:'menu', cls:'r'},
+    ]
+  },
+  apk:{
+    bot:`📦 <b>APK Premium</b><br><br>Applications débloquées :<br>• CapCut Premium<br>• Canva Pro<br>• Et bien d'autres apps<br><br>✅ Toutes fonctionnalités débloquées<br>✅ Sans publicité<br>✅ Livraison immédiate`,
+    choices:[
+      {label:'🛒 Commander',  link:'https://wa.me/22798498183', cls:'g'},
+      {label:'✈️ Telegram',   link:'https://t.me/LORD_X_AZIZ', cls:'v'},
+      {label:'← Retour',     next:'menu', cls:'r'},
+    ]
+  },
+  formation:{
+    bot:`🎓 <b>Formation Tech</b><br><br>Apprenez avec un expert :<br>• Programmation Python<br>• Hacking éthique<br>• Création de bots<br>• Outils digitaux &amp; réseaux sociaux<br><br>📅 Sessions individuelles ou en groupe.`,
+    choices:[
+      {label:"📚 S'inscrire", link:'https://wa.me/22798498183', cls:'v'},
+      {label:'✈️ Telegram',   link:'https://t.me/LORD_X_AZIZ'},
+      {label:'← Retour',     next:'menu', cls:'r'},
+    ]
+  },
+  autre:{
+    bot:`💼 <b>Demande personnalisée</b><br><br>Votre besoin est spécifique ? Pas de problème !<br><br>Décrivez votre projet et nous trouverons la meilleure solution ensemble.`,
+    choices:[
+      {label:'💬 WhatsApp',   link:'https://wa.me/22798498183'},
+      {label:'✈️ Telegram',   link:'https://t.me/LORD_X_AZIZ', cls:'v'},
+      {label:'📧 Email',      link:'mailto:oneaziz444@gmail.com', cls:'g'},
+      {label:'← Retour',     next:'menu', cls:'r'},
+    ]
+  }
+};
+
+function addBotMsg(html){
+  const row = document.createElement('div');
+  row.className = 'msg-row bot';
+  row.innerHTML = `<div class="msg-ava"><img src="${AVA_IMG}" alt=""></div><div class="bubble">${html}</div>`;
+  chatBody.appendChild(row);
+  chatBody.scrollTop = chatBody.scrollHeight;
+}
+function addUsrMsg(text){
+  const row = document.createElement('div');
+  row.className = 'msg-row usr';
+  row.innerHTML = `<div class="bubble">${text}</div><div class="msg-ava u">V</div>`;
+  chatBody.appendChild(row);
+  chatBody.scrollTop = chatBody.scrollHeight;
+}
+function showTyping(cb){
+  const row = document.createElement('div');
+  row.className = 'typing-row';
+  row.innerHTML = `<div class="msg-ava"><img src="${AVA_IMG}" alt=""></div><div class="typing-dots"><span></span><span></span><span></span></div>`;
+  chatBody.appendChild(row);
+  chatBody.scrollTop = chatBody.scrollHeight;
+  setTimeout(() => { row.remove(); cb(); }, 900);
+}
+function renderStep(key){
+  const step = FLOW[key];
+  if(!step) return;
+  chatChoices.innerHTML = '';
+  showTyping(() => {
+    addBotMsg(step.bot);
+    step.choices.forEach(c => {
+      const btn = document.createElement('button');
+      btn.className = 'ch-btn' + (c.cls ? ' '+c.cls : '');
+      btn.textContent = c.label;
+      if(c.link){
+        btn.addEventListener('click', () => {
+          addUsrMsg(c.label);
+          chatChoices.innerHTML = '';
+          showTyping(() => {
+            addBotMsg(`✅ Vous allez être redirigé vers notre contact.<br>Nous vous répondrons dans les plus brefs délais. 🚀`);
+            const back = document.createElement('button');
+            back.className = 'ch-btn r'; back.textContent = '← Menu principal';
+            back.addEventListener('click', () => { addUsrMsg('← Menu principal'); chatChoices.innerHTML=''; setTimeout(()=>renderStep('menu'),400); });
+            chatChoices.appendChild(back);
+            setTimeout(() => window.open(c.link,'_blank'), 700);
+          });
+        });
+      } else if(c.next){
+        btn.addEventListener('click', () => {
+          addUsrMsg(c.label);
+          chatChoices.innerHTML = '';
+          setTimeout(() => renderStep(c.next), 350);
+        });
+      }
+      chatChoices.appendChild(btn);
+    });
+  });
+}
+
+/* TOGGLE */
+chatFab.addEventListener('click', () => {
+  chatWin.classList.toggle('open');
+  chatNotif.style.display = 'none';
+  if(!chatStarted){ chatStarted = true; renderStep('menu'); }
+});
+chatClose.addEventListener('click', () => chatWin.classList.remove('open'));
 </script>
 </body>
 </html>
